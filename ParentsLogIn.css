@@ -374,7 +374,15 @@ video{
   transition: transform 0.9s ease-in-out;
   transition-delay: 0.6s;
 }
-.teachers{
+.parents,h4{
+  background-color:  #060b3b;
+  border-radius: 20px;
+  color: #ffff;
+  padding: 20px;
+  margin-left: 29px;
+ 
+}
+h4{
   background-color:  #060b3b;
   border-radius: 20px;
   color: #ffff;
