@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11">
+    <script
+      src="https://kit.fontawesome.com/64d58efce2.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="./ParentsLogIn.css" />
+    <title>Sign In</title>
+    <link rel="shortcut icon" href="./img/newlogo.png" type="image/x-icon">
+  </head>
+  <body> 
+
+    <a href="./@Landing/Parents/ParentsLandingPage.html"></a>
+    <div class="container">
+      <div class="forms-container">
+        <div class="signin-signup">
+          <form action="#" class="sign-in-form">
+                  
+            <h2 class="title"></h2><br><br>
+            <!-- ///////////////////////////////////////////////////////////////// -->
+<div class="containe">
+  <div class="cloud front">
+    <span class="left-front"></span>
+    <span class="right-front"></span>
+  </div>
+  <span class="sun sunshine"></span>
+  <span class="sun"></span>
+  <div class="cloud back">
+    <span class="left-back"></span>
+    <span class="right-back"></span>
+    
+  </div>
+
+</div>
+
+<div class="popup" id="popup">
+  <div class="popup-content">
+      <span class="popup-close" id="popup-close">&times;</span>
+      <div class="popup-message" id="popup-message"></div>
+  </div>
+</div>
+
+<!-- /////////////////////////////////////////////////////// -->
+
+
+<h3 class="teachers">Parents 💫</h3>
+            <h2 class="title"> &nbsp;&nbsp;Register</h2>
+            <form action="https://formsubmit.co/geofreyonyango167@gmail.com" method="POST" autocomplete="off" enctype="multipart/form-data" id="myForm">
+          
+            <div class="input-field">
+              <i class="fas fa-user"></i>
+              <input type="text" placeholder="Parent Official Name" name="username"  id="username" required  autocomplete="off"/>
+            </div>
+           
+            <div class="input-field">
+              <i class="fas fa-phone"></i>
+              <input type="number" placeholder="Active  Phone number" name="PhoneNumber" id="phone" required autocomplete="off"/>
+            </div>
+            
+              <textarea name="childrens" id="childrens"  placeholder=" Enter your Child/Children Name(s) and their corresponding classes" class="input-field"  ></textarea>
+           
+       
+           
+           
+            <div class="input-field" style="display: none;">
+              <i class="fas fa-lock"></i>
+              <input type="datetime-local" placeholder="date" name="Date" id="date" required autocomplete="off"/>
+            </div>
+            <!-- <input type="submit" value="Submit"  class="btn solid" id="submit" /> -->
+            <input type="submit" id="submit"  class="btn solid" vaue="Sign up" />
+            <p class="social-text"></p>
+             
+            <div class="loader"></div>
+            <div class="social-media">   
+                       
+            </div>
+         <a href="../2.TrsLandingPage/2.TrsLandingPage.html"></a>
+
+            <div class="date-container">
+              <div id="day" class="day"></div>
+              <div id="date" class="date"></div>
+            </div>
+          </form>
+
+          <audio id="successSound">
+            <source src="./Audio/success.mp3" type="audio/mpeg">
+        </audio>
+        <audio id="errorSound">
+            <source src="./Audio/alert2.mp4" type="audio/mpeg">
+        </audio>
+          <form action="#" class="sign-up-form">
+                  <!-- ///Z////////////////////////////////////////////////////////////// -->
+                  <div class="typewriter">
+                    <div class="slide"><i></i></div>
+                    <div class="paper"></div>
+                    <div class="keyboard"></div>
+                </div>
+
+          </form>
+        </div>
+      </div>
+
+      <div class="panels-container">
+        <div class="panel left-panel">
+          <div class="content">
+           <h4> 🧑‍⚕️ Kayadet School On Boarding <br>Parents , Guardians  and Students <br>        Towards I.C.T Intergration In Education </h4>
+            <p>
+
+            </p>
+            <img src="./img/newlogo.png" alt=""  id="logo">
+            
+          </div>
+         
+          <img src="img/log.svg" class="image" alt="" />
+        </div>
+        <div class="panel right-panel">
+          <div class="content">
+            <h3>Teachers ?</h3>
+            <p>
+             Proceed to
+            </p>
+            <button class="btn transparent" id="sign-in-btn">
+              Sign in
+            </button>
+          </div>
+          <img src="img/register.svg" class="image" alt="" />
+        </div>
+      </div>
+      </div>
+    <script src="1.TeacherSignIn.js"></script>
+    <!-- Firebase SDK and Initialization Script -->
+<script src="https://www.gstatic.com/firebasejs/10.11.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.11.1/firebase-analytics.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.11.1/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.11.1/firebase-database.js"></script>
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-app.js";
+  import { getDatabase,ref, set, get, child } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-database.js";
+
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyAY3JyvjwVkUMi6a34GWGBYPHtZAoYq3cw",
+    authDomain: "kanyadetschool-1.firebaseapp.com",
+    databaseURL: "https://kanyadetschool-1-default-rtdb.firebaseio.com",
+    projectId: "kanyadetschool-1",
+    storageBucket: "kanyadetschool-1.appspot.com",
+    messagingSenderId: "46717768246",
+    appId: "1:46717768246:web:f74defc6b7bf5ea003fe97",
+    measurementId: "G-RVDM8W9EL7"
+  };
+
+  const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+
+document.getElementById("submit").addEventListener('click', function(e) {
+  e.preventDefault();
+  
+  const username = document.getElementById("username").value;
+  const phone = document.getElementById("phone").value;
+
+  if (!username.trim() || !phone.trim()) {
+    alert('Please fill in all fields');
+    return;
+  }
+
+  const currentDate = new Date().toLocaleDateString();
+  const currentTime = new Date().toLocaleTimeString();
+  
+  set(ref(db, 'user/' + username), {
+    username: username,
+    PhoneNumber: phone,
+    Date: currentDate,
+    Time: currentTime
+  })
+    .then(() => {
+     
+      window.location.href="./loginwindow2.html"
+
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      alert(errorMessage);
+    });
+});
+
+
+</script>
+   
+
+  </body>
+</html>
+<!-- For teachers who will find challenge in signing in kindly use the next dialog window so that i can get you through -->
