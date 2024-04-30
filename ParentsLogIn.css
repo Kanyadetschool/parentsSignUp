@@ -208,9 +208,13 @@ form.sign-in-form {
 }
 
 .title {
-  font-size: 2.2rem;
-  color: #060b3b;
-  margin-bottom: 10px;
+  font-size: 1.5rem;
+  color: #ffffffeb;
+  background-color:#06043c; 
+  border: 4px solid #fff;
+  padding: 0px 10px;
+  border-radius: 20px;
+  margin: 3px 0px 0px 20px;
 }
 
 .input-field {
@@ -259,9 +263,7 @@ select{
   font-size: 1.1rem;
 
 }
-option{
-  background-color: rgb(145, 69, 10);
-}
+
 ::placeholder {
   color: #fff;
   font-weight: 500;
@@ -387,9 +389,11 @@ video{
 .parents{
   background-color:  #060b3b;
   border-radius: 20px;
-  color: #ffff;
-  padding: 15px;
-  margin-left: 29px;
+  color: #ffffffea;
+  border: 4px solid #fff;
+  padding: 15px ;
+  margin-left: 20px;
+
  
 }
 h4{
@@ -491,6 +495,7 @@ container {
 
 .cloud {
   width: 250px;
+  
 }
 
 .front {
