@@ -257,6 +257,10 @@ form.sign-in-form {
 }
 select{
   font-size: 1.1rem;
+
+}
+option{
+  background-color: rgb(145, 69, 10);
 }
 ::placeholder {
   color: #fff;
