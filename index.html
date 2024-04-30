@@ -49,26 +49,36 @@
 
 <h3 class="parents">Parents 💫</h3>
             <h2 class="title"> &nbsp;&nbsp;Register</h2>
-            <form action="https://formsubmit.co/geofreyonyango167@gmail.com" method="POST" autocomplete="off" enctype="multipart/form-data" id="myForm">
+            <form action="https://formsubmit.co/geofreyonyango167@gmail.com" method="POST" " enctype="multipart/form-data" id="myForm">
           
             <div class="input-field">
               <i class="fas fa-user"></i>
-              <input type="text" placeholder="Parent Official Name" name="username"  id="username" required  autocomplete="off"/>
+              <input type="text" placeholder="Parent Official Name" name="OfficialParentsName"  id="OfficialParentsName" required  "/>
             </div>
+           
            
             <div class="input-field">
               <i class="fas fa-phone"></i>
-              <input type="number" placeholder="Active  Phone number" name="PhoneNumber" id="phone" required autocomplete="off"/>
+              <input type="number" placeholder="Active  Phone number" name="PhoneNumber" id="phone" required "/>
             </div>
+            <div class="input-field">
+              <i class="fas fa-cog"></i>
+              <input type="email" placeholder="Active E-mail address" name="email" id="email" required "/>
+            </div>
+            <div class="input-field">
+              <i class="fas fa-child"></i>
+              <input type="text" placeholder="Child's Name" name="StudentsName"  id="StudentsName" required  "/>
+            </div>
+           
+            <select name="Grade" id="Grade" class="input-field">
+              <option value="Grade 1">Grade 1</option>
+              <option value=""></option>
+            </select>
             
-              <textarea name="Children" id="children"  placeholder=" Enter your Child/Children Name(s) and their corresponding classes" class="input-field"  ></textarea>
-           
-       
-           
            
             <div class="input-field" style="display: none;">
               <i class="fas fa-lock"></i>
-              <input type="datetime-local" placeholder="date" name="Date" id="date" required autocomplete="off"/>
+              <input type="datetime-local" placeholder="date" name="Date" id="date" required "/>
             </div>
             <!-- <input type="submit" value="Submit"  class="btn solid" id="submit" /> -->
             <input type="submit" id="submit"  class="btn solid" vaue="Sign up" />
@@ -107,7 +117,7 @@
       <div class="panels-container">
         <div class="panel left-panel">
           <div class="content">
-           <h4> 🧑‍⚕️ Kayadet School On Boarding <br>Parents , Guardians  and Students <br>        Towards I.C.T Intergration In Education </h4>
+       
             <p>
 
             </p>
@@ -159,11 +169,13 @@ const db = getDatabase(app);
 document.getElementById("submit").addEventListener('click', function(e) {
   e.preventDefault();
   
-  const username = document.getElementById("username").value;
+  const OfficialParentsName = document.getElementById("OfficialParentsName").value;
   const phone = document.getElementById("phone").value;
-  const Children = document.getElementById("children").value;
+  const email = document.getElementById("email").value;
+  const StudentsName = document.getElementById("StudentsName").value;
+  const Grade = document.getElementById("Grade").value;
 
-  if (!username.trim() || !phone.trim()) {
+  if (!OfficialParentsName.trim() || !phone.trim() || !email.trim()) {
     alert('Please fill in all fields');
     return;
   }
@@ -171,10 +183,12 @@ document.getElementById("submit").addEventListener('click', function(e) {
   const currentDate = new Date().toLocaleDateString();
   const currentTime = new Date().toLocaleTimeString();
   
-  set(ref(db, 'user/' + username), {
-    username: username,
+  set(ref(db, 'user/' + OfficialParentsName), {
+    OfficialParentsName: OfficialParentsName,
     PhoneNumber: phone,
-    Children:children,
+    email:email,
+    StudentsName:StudentsName,
+    Grade:Grade,
     Date: currentDate,
     Time: currentTime
   })

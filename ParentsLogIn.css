@@ -202,6 +202,9 @@ form.sign-up-form {
 
 form.sign-in-form {
   z-index: 2;
+ overflow-y: auto;
+
+ 
 }
 
 .title {
@@ -216,8 +219,8 @@ form.sign-in-form {
   width: 100%;
     color: #ffffff;
     background-color:  #060b3b;
-  margin: 10px 0;
-  height: 55px;
+  margin: 4px 0;
+  height: 50px;
   border-radius: 55px;
   display: grid;
   grid-template-columns: 15% 85%;
@@ -361,7 +364,10 @@ video{
 
 .left-panel {
   pointer-events: all;
-  padding: 3rem 17% 2rem 12%;
+  height: 1px;
+  padding: 0px;
+
+
 }
 
 .right-panel {
@@ -374,11 +380,11 @@ video{
   transition: transform 0.9s ease-in-out;
   transition-delay: 0.6s;
 }
-.parents,h4{
+.parents{
   background-color:  #060b3b;
   border-radius: 20px;
   color: #ffff;
-  padding: 20px;
+  padding: 15px;
   margin-left: 29px;
  
 }
@@ -386,8 +392,8 @@ h4{
   background-color:  #060b3b;
   border-radius: 20px;
   color: #ffff;
+  width: 100%;
   padding: 20px;
-  margin-left: 29px;
  
 }
 
@@ -441,6 +447,7 @@ h4{
 .container.sign-up-mode form.sign-in-form {
   opacity: 0;
   z-index: 1;
+ 
 }
 
 .container.sign-up-mode .right-panel .image,
@@ -1146,6 +1153,9 @@ container {
     left: 36%;
     top:150px;
     height: 70px;
+     }
+     form.sign-in-form{
+      margin-top: -850px;
      }
 
   .image {
