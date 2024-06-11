@@ -1,224 +1,558 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kanyadet school Main Page</title>
+    <link rel="shortcut icon" href="./images/newlogo.png" type="image/x-icon">
     <script
-      src="https://kit.fontawesome.com/64d58efce2.js"
-      crossorigin="anonymous"
-    ></script>
-    <link rel="stylesheet" href="./ParentsLogIn.css" />
-    <title>Sign In</title>
-    <link rel="shortcut icon" href="./img/newlogo.png" type="image/x-icon">
-  </head>
-  <body> 
-
-    <a href="./@Landing/Parents/ParentsLandingPage.html"></a>
-    <div class="container">
-      <div class="forms-container">
-        <div class="signin-signup">
-          <form action="#" class="sign-in-form">
-                  
-            <h2 class="title"></h2><br><br>
-            <!-- ///////////////////////////////////////////////////////////////// -->
-<div class="containe">
-  <div class="cloud front">
-    <span class="left-front"></span>
-    <span class="right-front"></span>
-  </div>
-  <span class="sun sunshine"></span>
-  <span class="sun"></span>
-  <div class="cloud back">
-    <span class="left-back"></span>
-    <span class="right-back"></span>
+    src="https://kit.fontawesome.com/64d58efce2.js"
+    crossorigin="anonymous"
+  ></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link rel="stylesheet" href="./ParentsLandingPage.css" />
+    <link rel="manifest" href="./manifest.json">
+    <link rel="stylesheet" href="./loader.css" />
+    <link rel="stylesheet" href="./swalOnly.css" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <!-- <link rel="stylesheet" href="./fontawesome.css"> -->
+</head>
+<body>
     
-  </div>
+    <!--page wrapper start-->
+    <div class="page-wrapper">
+        <!--header start-->
+    <div class="smallscreen">
+        <img src="images/schoologo.png" class="logonsmallscreen" >
+       <p id="titleSmallscreen"> KANYADET SCHOOL</p> 
+    </div>
+                <div class="navbar">
+                    <img src="./images/newlogo.png" class="logo">
+                    <p class="title">Kanyadet Comprehensive School</p>
+                    
+                <nav>
 
-</div>
+                  
 
-<div class="popup" id="popup">
-  <div class="popup-content">
-      <span class="popup-close" id="popup-close">&times;</span>
-      <div class="popup-message" id="popup-message"></div>
-  </div>
-</div>
+                    <!-- <div class="visme_d" data-title="Connect with Us" data-url="x4v6jk3q-connect-with-us?fullPage=true" data-domain="forms" data-full-page="true" data-min-height="100vh" data-form-id="53411"></div><script src="https://static-bundles.visme.co/forms/vismeforms-embed.js"></script> -->
+                    <a href="./"></a>
+                    <ul class="nav-menu">
+                      
+                        
 
-<!-- /////////////////////////////////////////////////////// -->
+                        <li><a href="https://kanyadetschool-1.web.app/"class="link5" target="_blank"> <i class="fas fa-user" id="fab1"></i> Teachers</a></li>
+                        <li><a href="https://kanyadetschool-2.web.app/" class="link4" target="_blank"> <i class="fas fa-camera" id="fab1" ></i> Parents</a></li>
+                        <li><a href="#" class="linkswal"> <i class="fas fa-camera" id="fab1" target="_blank"></i> E-Comunications</a></li>
+                        <li><a href="https://my.visme.co/view/4d7rnkr9-untitled-project" onclick="alert('There are no surveys unavailable for completion.')"class="link4"> <i class="fas fa-camera" id="fab1" target="_blank"></i> Surveys</a></li>
+                        <li><a href="https://kec.ac.ke/"class="link3"> <i class="fas fa-calendar" id="fab1" target="_blank"></i> E-Learn</a></li>
+                        <!-- <li><a href="#contact"class="link5" target="_blank"> <i class="fas fa-user" id="fab1"></i>Contacts</a></li> -->
+                        
+                        </ul>
 
-
-<h3 class="parents">Parents 💫</h3>
-            <h2 class="title"> &nbsp;&nbsp;Sign Up</h2>
-            <form action="https://formsubmit.co/geofreyonyango167@gmail.com" method="POST" " enctype="multipart/form-data" id="myForm">
-          
-            <div class="input-field">
-              <i class="fas fa-user"></i>
-              <input type="text" placeholder="Parent Official Name" name="OfficialParentsName"  id="OfficialParentsName" required  "/>
+                        
+                </nav>
             </div>
-           
-           
-            <div class="input-field">
-              <i class="fas fa-phone"></i>
-              <input type="number" placeholder="Active  Phone number" name="PhoneNumber" id="phone" required "/>
+            <div class="container">
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
             </div>
-            <div class="input-field">
-              <i class="fas fa-cog"></i>
-              <input type="email" placeholder="Active E-mail address" name="email" id="email" required "/>
-            </div>
-            <div class="input-field">
-              <i class="fas fa-child"></i>
-              <input type="text" placeholder="Student's Name" name="StudentsName"  id="StudentsName" required  "/>
-            </div>
-           
-            <select name="Grade" id="Grade" class="input-field">
-              <option value="">Student's Grade</option>
-              <option value="Grade 1">Grade 1</option>
-              <option value="Grade 2">Grade 2</option>
-              <option value="Grade 3">Grade 3</option>
-              <option value="Grade 4">Grade 4</option>
-              <option value="Grade 5">Grade 5</option>
-              <option value="Grade 6">Grade 6</option>
-              <option value="Grade 7">Grade 7</option>
-              <option value="Grade 8">Grade 8</option>
+              <a href="./2.ToLandingPage/index.html"></a>
+              <div class="microsofthide">
+                <div class="popup-container">
               
-              <option value=""></option>
-            </select>
-            
+                      <form class="form2" data-form-id="form2">
+                        <div class="loader"></div>
+               <a href="Tel:0112934577"><img src="./Grade 7 img/phone.png" alt="" class="logoinmicrosoft"> </a>
+               <!-- <div style="position: relative; width: 100%; height: 0; padding-top: 70.9459%;
+               padding-bottom: 0; box-shadow: 0 2px 8px 0 rgba(63,69,81,0.16); margin-top: 1.6em; margin-bottom: 0.9em; overflow: hidden;
+               border-radius: 8px; will-change: transform;">
+                <iframe loading="lazy" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; border: none; padding: 0;margin: 0;"
+                  src="./Docs/Grade-3-4-and-5-SBAs.pdf" allowfullscreen="allowfullscreen" allow="fullscreen">
+                </iframe>
+              </div>
            
-            <div class="input-field" style="display: none;">
-              <i class="fas fa-lock"></i>
-              <input type="datetime-local" placeholder="date" name="Date" id="date" required "/>
-            </div>
-            <!-- <input type="submit" value="Submit"  class="btn solid" id="submit" /> -->
-            <input type="submit" id="submit"  class="btn solid" vaue="Sign up" />
-            <p class="social-text"></p>
+
+              <a href="https:&#x2F;&#x2F;www.canva.com&#x2F;design&#x2F;DAFyJAC5QWY&#x2F;lg5fqVRoSEBFKtEm5L1agA&#x2F;view?utm_content=DAFyJAC5QWY&amp;utm_campaign=designshare&amp;utm_medium=embeds&amp;utm_source=link" target="_blank" rel="noopener"> Kanyadet school</a> ICT Department -->
+<div class="animate__animated animate__flip">
+    <marquee behavior="" direction="">
+                <p class="titlemic">Term II  2024 begins in:</p>
+            </marquee>
+                </div>
+                <div></div>
+                <div id="countdown"  class="animate__animated animate__zoomInRight" >
              
-            <div class="loader"></div>
-            <div class="social-media">   
-                       
+                    <div id="countdown-days">0 Days</div>
+                    <div id="countdown-hours">0 Hours</div>
+                    <div id="countdown-minutes">0 Minutes</div>
+                    <div id="countdown-seconds">0 Seconds</div>
+                  </div><br>
+                <div class="animate__animated animate__zoomInDown">
+                <i class="fas fa-user" id="fab"> </i> <p class="updates">  <b class="new">Term Updates!</b> <br> Practicals For school based Assessments{ S.B.A } for <mark>Grade 4 and 5</mark> Includes: <br> Agriculture and Nutrition , Intergrated science and Technology<br>
+                </div>
+              
+             
+                
+       
+                   
+                </p>
+                <div class="animate__animated animate__zoomInRight">
+          <div id="footer">Click out to close Updates dialog</div>
+</div>
+                 <img src="./images/popupimagefooter.png" alt="" class="popupimagefooter">
+                 
+              </form>
+              </div>
             </div>
-         <a href="../2.TrsLandingPage/2.TrsLandingPage.html"></a>
-
-            <div class="date-container">
-              <div id="day" class="day"></div>
-              <div id="date" class="date"></div>
-            </div>
-          </form>
-
-          <audio id="successSound">
-            <source src="./Audio/success.mp3" type="audio/mpeg">
-        </audio>
-        <audio id="errorSound">
-            <source src="./Audio/alert2.mp4" type="audio/mpeg">
-        </audio>
-          <form action="#" class="sign-up-form">
-                  <!-- ///Z////////////////////////////////////////////////////////////// -->
-                  <div class="typewriter">
-                    <div class="slide"><i></i></div>
-                    <div class="paper"></div>
-                    <div class="keyboard"></div>
+            <br><br>
+       <div class="loading">
+                <svg viewBox="25 25 50 50">
+                    <circle r="20" cy="50" cx="50"></circle>
+                  </svg>
                 </div>
 
-          </form>
-        </div>
-      </div>
 
-      <div class="panels-container">
-        <div class="panel left-panel">
-          <div class="content">
-       
-            <p>
-
-            </p>
-           <a href="./Parents/index.html"></a>
+              <div id="top">
+         <!--home section starts-->
+       <br>
+         <div class="container" id="maincontainer" >
+            <div class="grid">
+                <div class="home-text">
+                  <h2 >Principal's Message</h2>
+                    <p>" We are committed to providing a nurturing and inclusive environment where every student is empowered to thrive academically, socially, and emotionally. Our dedicated team of educators stands ready to inspire, guide, and support each student along their educational journey.
+                        We invite you to explore our website further and discover the unique spirit that makes <b>Kanyadet Comprehensive School</b> such a special place. We are confident that our school can provide the perfect foundation for your child's academic and personal growth.  We look forward to welcoming you to our school family!""<br><br>
+                    <span>Madam Evelyne Panyako</span> </P>
+                   <div class="btn-wrap">
+                    
+                    <a href="#about" class="btn">know more</a>
+                   </div>
+                </div>
+                <div class="home-img">
+                    <div class="circle-wrap">
+                       <div class="circle">
+                    
+                       </div> 
+                    </div>
+                <img src="images/schoolpic1.jpg" alt="img">
+                <div  id="about"></div>
+                 <br>
+               
+                <p>Administration Block first class built @ 21st centuary bug error free</p>
+                
+            </div>
             
-          </div>
-         
-          <img src="img/log.svg" class="image" alt="" />
+
+         </div>
+        
+         <!--home section end-->
+
+           <!--about section start-->
+           <section class="about section-padding">
+            <div class="container">
+                <div class="grid">
+                  <div class="about-img">
+                    <div class="img-box">
+                        <img src="images/schoolpic2.jpg" alt="">
+                        <div class="box box-1">
+                            <span style="color:white;font-weight: bold; font-size: 18px; margin: 0; line-height: 1; background-color: transparent;"> 53 Years <br>
+                            Since Establishement</p>
+                     </div>
+                    </div>
+                  </div>
+
+                  
+                  <div class="about-text">
+                    <div class="section-title">
+                        <span class="title">about us</span>
+                        <h2 class="sub-title">we've been here since 1970</h2>
+                    </div>
+                    <p>
+                        Founded in 1970, Kanyadet Comprehensive School is a beacon of educational excellence.
+                         Our institution is dedicated to cultivating intellectual curiosity, critical thinking, and social responsibility in every student.
+                          With a dynamic curriculum and passionate faculty, we provide a nurturing environment where students thrive academically and personally.
+                           Welcome to a place where knowledge flourishes and minds expand.
+                           Established in 1970, Kanyadet Comprehensive School has been a trailblazer in education, fostering a culture of excellence and innovation. 
+                           With a legacy of empowering students to reach new heights, our dedicated faculty and vibrant community inspire a passion for learning that knows no bounds. 
+                           Join us as we continue to shape the future of education, where every student's potential is realized and every aspiration is achieved. 
+                           Welcome to Kanyadet Comprehensive School, where greatness begins.
+                    </p>
+                    
+                  </div>  
+                </div>
+            </div>
+           </section>
+            <!--about section end-->
+
+            <!--services section start -->
+             <section class="services section-padding" id="services">
+                <div class="container">
+                    <div class="section-title">
+                        <span class="title">Teaching  Staff</span>
+                        <h2 class="sub-title"></h2>
+                    </div>
+                    <div class="grid">
+                         <!-- services item start-->
+                           <div class="services-item">
+                            <h6 class="Numbering">1</h6>
+                            <div class="img-box">
+                                <img src="images/anode.png" alt="brain">
+                            </div>
+                            <h3>Md everlyne Panyako</h3>
+                            <span>HeadTeacher</span>
+                           </div>
+                         <!-- services item end-->
+                         <!-- services item start-->
+                           <div class="services-item">
+                            <h6 class="Numbering">2</h6>
+                            <div class="img-box">
+                                <img src="images/obure-removebg-preview (2).png" alt="brain">
+                            </div>
+                            <h3>Mr Fredrick Ghana</h3>
+                            <span>Acting D/HOI</span>
+                          
+                           </div>
+                         <!-- services item end-->
+                          <!-- services item start-->
+                          <div class="services-item">
+                            <h6 class="Numbering">3</h6>
+                            <div class="img-box">
+                                <img src="images/Owino.png" alt="brain">
+                            </div>
+                            <h3>Mr Wycliff Owino</h3>
+                        <span>H.O.D I.C.T </span>
+                      
+                           </div>
+                         <!-- services item end-->
+                          <!-- services item start-->
+                          <div class="services-item">
+                            <h6 class="Numbering">4</h6>
+                            <div class="img-box">
+                                <img src="images/Mr OWUOR.png" alt="brain">
+                            </div>
+                            <h3>Mr  Jerry Wycliff Owuor</h3>
+                            <span>H.O.D Examinations</span>
+                          
+                           </div>
+                           <!-- services item end-->
+                            
+                               <!-- services item start-->
+                           <div class="services-item">
+                            <h6 class="Numbering">5</h6>
+                            <div class="img-box">
+                                <img src="images/lichuma.jpg" alt="brain">
+                            </div>
+                            <h3>Mr Vincent Olubwayo</h3>
+                            <span>H.O.D Sciences</span>
+                          
+                           </div>
+                         <!-- services item end--> 
+                             <!-- services item start-->
+                             <div class="services-item">
+                                <h6 class="Numbering">6</h6>
+                                <div class="img-box">
+                                    <img src="images/mrokumu.png" alt="brain">
+                                </div>
+                                <h3>Mr Edwin Okumu</h3>
+                            <span>H.O.D Sports</span>
+                          
+                               </div>
+                             <!-- services item end-->
+                             <!-- services item start-->
+                             <div class="services-item">
+                                 <h6 class="Numbering">7</h6>
+                                 <div class="img-box">
+                                     <img src="images/schoologo.png" alt="brain">
+                                    </div>
+                                    <h3>Md Janet</h3>
+                                    <span>H.O.D English</span>
+                                </div>
+                                <!-- services item start-->
+                            <div class="services-item">
+                             <h6 class="Numbering">8</h6>
+                             <div class="img-box">
+                                 <img src="images/schoologo.png" alt="brain">
+                             </div>
+                             <h3>Md Ogonda Eunice Atieno</h3>
+                             <span>Asst H.O.D English</span>
+                            </div>
+                          <!-- services item end--> 
+                         <!-- services item end--> 
+                               <!-- services item start-->
+                           <div class="services-item">
+                            <h6 class="Numbering">9</h6>
+                            <div class="img-box">
+                                <img src="images/mroduoremove.png" alt="brain">
+                            </div>
+                            <h3>Mr Oduor geofrey</h3>
+                            <span>Teacher Of Science</span>
+                           </div>
+                         <!-- services item end--> 
+                        
+                               <!-- services item start-->
+                           <div class="services-item">
+                            <h6 class="Numbering">10</h6>
+                            <div class="img-box">
+                                <img src="images/mrmangla.png" alt="brain">
+                            </div>
+                            <h3>Mr Maxwel Mangla</h3>
+                            <span>B.0.M</span>
+                           </div>
+                         <!-- services item end--> 
+                             
+                             
+                         
+                               
+                        
+                    </div>
+                </div>
+             </section>
+            <!--services section end -->
+
+            <!--pricing section start-->
+<section class="pricing section-padding" id="pricing">
+    <div class="container">
+        <div class="section-title">
+            <span class="title">External</span>
+            <h2 class="sub-title">Communications</h2>
         </div>
-        <div class="panel right-panel">
-          <div class="content">
-            <h3>Teachers ?</h3>
-            <p>
-             Proceed to
-            </p>
-            <button class="btn transparent" id="sign-in-btn">
-              Sign in
-            </button>
-          </div>
-          <img src="img/register.svg" class="image" alt="" />
+        <div class="grid">
+            <!-- basic plan start--> 
+            <div class="pricing-item">
+                <div class="pricing-header">
+                 <h3>Internal Assessments Feedback</h3>
+                    <div class="price">🏛️ <br>The Year 2024</div>
+                </div>
+                <div class="pricing-body">
+                    
+                  
+                    <ul>
+                    
+                           </a><li><i class="fas fa-user"></i> <a href="#" target="_blank" >Grade Six Mid Term I Performance Reports is currently out</li></a>
+
+                 
+
+ 
+     
+                    </ul>
+                </div>
+                <div class="pricing-footer">
+                    <a href="#" class="btn">get started</a>
+                </div>
+            </div>
+            <!-- basic plan end--> 
+              
+            <!-- standard plan start--> 
+            <div class="pricing-item">
+                <div class="pricing-header">
+                    <h3>National Assessments Feedback</h3>
+                    <div class="price">👨‍👩‍👧‍👦 <br>welcome to parent Care Services</div>
+                </div>
+                <div class="pricing-body">
+                    <ul>
+                        <li><i class="fas fa-calendar"></i>registration for KPSEA examination Curently ongoing you are hereby reminded to comply before the deadline</li>
+
+                    </ul>
+                </div>
+                <div class="pricing-footer">
+                    <a href="#" class="btn">get started</a>
+                </div>
+            </div>
+            <!--  standard  plan end--> 
+             
+
+             <!-- premium plan start--> 
+             <div class="pricing-item">
+                <div class="pricing-header">
+                    <h3>National Examinations Related Communications</h3>
+                    <div class="price">🎒 <br> Trending</div>
+                </div>
+                <div class="pricing-body">
+                    <ul>
+                        <li><i class="fas fa-cancel"></i>🧑‍⚕️registration for KPSEA examination Curently ongoing you are hereby reminded to comply before the deadline</li>
+
+
+                    </ul>
+                </div>
+                <div class="pricing-footer">
+                    <a href="#" class="btn">get started</a>
+                </div>
+            </div>
+            <!-- premium plan end--> 
         </div>
-      </div>
-      </div>
-    <script src="1.TeacherSignIn.js"></script>
-    <!-- Firebase SDK and Initialization Script -->
-<script src="https://www.gstatic.com/firebasejs/10.11.1/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.11.1/firebase-analytics.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.11.1/firebase-auth.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.11.1/firebase-database.js"></script>
+    </div>
+</section>
+            <!--pricing section end-->
 
-<script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-app.js";
-  import { getDatabase,ref, set, get, child } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-database.js";
+             <!-- team section start-->
+             <section class="team section-padding" id="team">
+                <div class="container">
+                 <div class="section-title">
+                    <span class="title">Our partners</span>
+                    <h2 class="sub-title">we are a community of people</h2>
+                 </div>  
+                 <div class="grid">
+                      <!-- team item start-->
+                       <div class="team-item">
+                        <div class="img-box">
+                           <a href="https://www.tsc.go.ke/"> <img src="images/TSC.png" alt=""></a>
+                        </div>
+                        <div class="detail">
+                          <h3>TSC</h3>
+                          <p>Teachers service commission</p>  
+                        </div>
+                       </div>
+                    <!-- team item end-->
+                    <!-- team item start-->
+                    <div class="team-item">
+                        <div class="img-box">
+                            <a href="https://www.knec-portal.ac.ke/"><img src="images/knec.png" alt=""></a>
+                        </div>
+                        <div class="detail">
+                          <h3>KNEC</h3> 
+                          <p>kenya national Examination council</p> 
+                        </div>
+                       </div>
+                    <!-- team item end-->
+                    <!-- team item start-->
+                    <div class="team-item">
+                        <div class="img-box">
+                            <a href="https://kicd.ac.ke/"><img src="images/kicd.png" alt=""></a>
+                        </div>
+                        <div class="detail">
+                          <h3>MOE</h3> 
+                          <p>Kenya Institute Of Curriculum Development</p> 
+                        </div>
+                       </div>
+                    <!-- team item end-->
+                   
+
+                 </div> 
+                </div>
+             </section>
+             <!-- team section end  -->
+             <!-- contact section start -->
+              <section class="contact section-padding" id="contact">
+               <div class="container">
+                <div class="section-title">
+                    <span class="title">contact us</span>
+                    <h2 class="sub-title">have any question</h2>
+                </div>
+                <div class="grid contact-grid">
+                <div class="contact-info">
+                <div class="contact-info-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <h3>Address</h3>
+                    <p class="contacts">P.O Box 45 - 40139, Akala, Kenya</p>
+                  </div>
+                  <div class="contact-info-item">
+                    <i class="fas fa-phone"></i>
+                    <h3>Call us</h3>
+                    <a href="tel:+25479977321" class="contacts">+25479977321</a>
+                  </div>
+                  <div class="contact-info-item">
+                    <i class="fas fa-envelope"></i>
+                    <h3>Email us</h3>
+                    <a href="mailto:kanyadetprischool@gmail.com" class="contacts" id="schoolemail">kanyadetprischool@gmail.com</a>
+                  </div>
+                </div>
+                 <div class="contact-form"> 
+                    <form name="submit-to-google-sheet" class="form">
+                    <div class="input-box">
+                        <input type="text" placeholder="Name" class="input-control" required>
+                    </div>
+                    <div class="input-box">
+                        <input type="text" placeholder="Email" class="input-control" required>
+                    </div>
+                    <div class="input-box">
+                        <input type="text" placeholder="phone" class="input-control" required>
+                    </div>
+                    <div class="input-box">
+                        <textarea placeholder="message" class="input-control" required></textarea>
+                        <div class="btn-wrap"><br>
+                       
+                        <button type="submit" class="btn">send message </button>
+                       
+                  
+                        </div>
+                    </div>
+                 </form>
+                </div>
+                </div>
+              </section>
+            <!-- contact section end -->
+            <!-- footer start -->
+            <footer class="footer">
+                <div class="container">
+                    <h3>Follow us</h3>
+                    <div class="social-links">
+                        <!-- <div id="installButtonContainer">
+                            <button class="btn" id="installButton">Install App</button>
+                          </div>
+                          <div id="thankYouMessage" style="display: none;">
+                            Thank you for installing the app!
+                          </div>
+                          <button id="shareButton" style="display: none;" class="btn">Share App</button> Share button initially hidden
+                       <br> -->
+                  
+                        <a href="https://web.facebook.com/kanyadetprischool/?_rdc=1&_rdr"title="facebook"> <i class="fab fa-facebook"></i></a>
+                        <a href="#"title="whatsapp"> <i class="fab fa-whatsapp"></i></a>
+                        <a href="#"title="twitter"> <i class="fab fa-twitter"></i></a>
+                        <a href="#"title="instagram"> <i class="fab fa-instagram"></i></a>
+                        <a href="#"title="youtube"> <i class="fab fa-youtube"></i></a>
+                    </div>
+
+                </div>
+            </footer>
+             <!-- footer end-->
+    </div>
+    </div>
+
+     <!--page wrapper end -->
+     <!--page alert start -->
+    
+     <!--page alert stop-->
+       <!--style switcher start-->
 
 
-  const firebaseConfig = {
-    apiKey: "AIzaSyBsvVF69FEdDUT9sKRM6h1CNxPOH_hK0J8",
-    authDomain: "kanyadetschool-2.firebaseapp.com",
-    projectId: "kanyadetschool-2",
-    storageBucket: "kanyadetschool-2.appspot.com",
-    messagingSenderId: "123438564816",
-    appId: "1:123438564816:web:d028d9db93f127207fa5d5",
-    measurementId: "G-TZZV8DJCBC"
-  };
+       <script type="module">
 
-  const app = initializeApp(firebaseConfig);
-const db = getDatabase(app);
-
-document.getElementById("submit").addEventListener('click', function(e) {
-  e.preventDefault();
-  
-  const OfficialParentsName = document.getElementById("OfficialParentsName").value;
-  const phone = document.getElementById("phone").value;
-  const email = document.getElementById("email").value;
-  const StudentsName = document.getElementById("StudentsName").value;
-  const Grade = document.getElementById("Grade").value;
-
-  if (!OfficialParentsName.trim() || !phone.trim() || !email.trim()) {
-    alert('Please fill in all fields');
-    return;
-  }
-
-  const currentDate = new Date().toLocaleDateString();
-  const currentTime = new Date().toLocaleTimeString();
-  
-  set(ref(db, 'user/' + OfficialParentsName), {
-    OfficialParentsName: OfficialParentsName,
-    PhoneNumber: phone,
-    email:email,
-    StudentsName:StudentsName,
-    Grade:Grade,
-    Date: currentDate,
-    Time: currentTime
-  })
-    .then(() => {
-     alert('Welcome on board🧑‍⚕️')
-      window.location.href="./Parents/index.html"
-
-    })
-    .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      alert(errorMessage);
-    });
-});
-
-
-
-
-</script>
-   
-
-  </body>
-</html>
-<!-- For teachers who will find challenge in signing in kindly use the next dialog window so that i can get you through -->
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-analytics.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+      
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+          apiKey: "AIzaSyBuyQzOEh5Wg6W-C_p2c7M7V1T9wr3TlwU",
+          authDomain: "kanyadet-school.firebaseapp.com",
+          projectId: "kanyadet-school",
+          storageBucket: "kanyadet-school.appspot.com",
+          messagingSenderId: "224031504744",
+          appId: "1:224031504744:web:8e71e83269abf49ecdfedd",
+          measurementId: "G-8F80E3SNG5"
+        };
+      
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+      </script>
+    
+     <script src="./loaderOnly.js"></script>
+     <script src="./swal e-comunication.js"></script>
+     <script src="./install App Popup.js"></script>
+     <script src="./install App.js"></script>
+     <script src="service-worker.js"></script>
+     <script src="./MainPopups.js"></script>
+     <script src="./comtact Submssion.js"></script>
+     <script src="./UpdateStand alone.js"></script>
+     <script src="./main.js"></script>
+       <!--style switcher end-->
+       <div class="backtoTop">    <a href="#top"title="facebook"> <i class="fa fa-arrow-up" aria-hidden="true"></i> </a></div>
+       <div class="LeftMessageicon">    <a href="sms:0769106047 ?body=Congratulations You've reached Developer Inbox.How may I help you?🧑‍⚕️!"title="Developer"> <i class="fa fa-envelope" aria-hidden="true"></i> </a></div>
+     <p class="rights">All rights reserved ©️ 2024 | Developer Mr Oduor| Naturing Every learners Potential</p>
+    </div>
+</body> 
