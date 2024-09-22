@@ -18,6 +18,7 @@
     backdrop-filter: blur(5px);
     background-color: transparent;
     border-radius: 20px;
+    text-align: left;
   
   }
   h2#swal2-title.swal2-title{
@@ -31,7 +32,23 @@
   }
   div#swal2-html-container.swal2-html-container {
     color: #d5cccc;
+    text-align: left;
     
+  }
+  .swal2-html-container {
+    text-align: left;
+    
+  }
+
+  .subjects{
+    /* background-color: rgba(255, 255, 255, 0.301); */
+    background: linear-gradient(135deg, #f3eeee, #e3e1df,#fffcfc);
+    box-shadow: 0 10px 20px rgb(255, 254, 254);
+    border-radius: 10px;
+    color: rgb(124, 124, 135);
+    font-weight: 600;
+    text-align: left;
+    padding: 20px;
   }
   .swal2-input{
     color: rgb(15, 15, 69);
