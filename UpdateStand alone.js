@@ -10,4 +10,4 @@
     }
 
     // Call the function after 2000 milliseconds (2 seconds)
-    setTimeout(showDelayedSweetAlert, 2000);
+    setTimeout(showDelayedSweetAlert, 9000);

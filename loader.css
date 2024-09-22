@@ -12,7 +12,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgba(255, 255, 255, 0.8); /* Adjust the background color and opacity */
+    backdrop-filter: blur(40px);
     z-index: 9999; /* Ensure the loader is above other content */
   }
   
@@ -27,8 +27,8 @@ body {
   
   .loading circle {
     fill: none;
-    stroke: hsl(214, 97%, 59%);
-    stroke-width: 3;
+    stroke: hsla(210, 5%, 92%, 0.795);
+    stroke-width: 6;
     stroke-dasharray: 1, 200;
     stroke-dashoffset: 0;
     stroke-linecap: round;

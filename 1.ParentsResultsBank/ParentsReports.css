@@ -7,7 +7,7 @@
    margin: 0;
    padding: 0;
    background-color: #f8f8f8;
-   background-image: url(./images/new2.jpeg);
+   background-image: url(./images/new1.png);
    background-size: contain;
    
 
@@ -135,8 +135,11 @@ width: 70%;
    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
    padding: 20px;
    text-align: center;
+   backdrop-filter: blur(60px);
+   background: linear-gradient(135deg, #f5f6f752 0%, #e9ebee 50%, #D2B48C 100%);
 box-shadow: 0 4px 6px rgb(254, 254, 254), 0 1px 3px rgb(255, 254, 254);
     transition: box-shadow 0.3s ease-in-out;
+    background-color:#ffffffa8; 
 
 }
 /* .document-card:hover{
@@ -196,7 +199,7 @@ box-shadow: 0 4px 6px rgb(254, 254, 254), 0 1px 3px rgb(255, 254, 254);
    }
    
 .swal2-popup.swal2-modal.swal2-show{
-    background-color: #ffffff9d;
+  background: linear-gradient(135deg, #f5f6f7c1 0%, #e9ebee 50%, #b0afaf 100%);
     border: 2px solid gray;
     border-radius: 10px;
 }
@@ -206,7 +209,7 @@ box-shadow: 0 4px 6px rgb(254, 254, 254), 0 1px 3px rgb(255, 254, 254);
   background-size: cover;
   backdrop-filter: blur(5px);
   background-color: transparent;
-  border-radius: 20px;
+   border-radius: 20px;
 
 }
 h2#swal2-title.swal2-title{
@@ -220,6 +223,7 @@ h2#swal2-title.swal2-title{
 }
 div#swal2-html-container.swal2-html-container {
   color: #d5cccc;
+  background: linear-gradient(135deg, #f5f6f752 0%, #e9ebee 50%, #D2B48C 100%);
   
 }
 .swal2-input{
@@ -236,7 +240,6 @@ div:where(.swal2-container) div:where(.swal2-popup) {
   padding: 0 0 1.25em;
   border: none;
   border-radius: 5px;
-  background: #c1baba;
   color: #d5cccc;
   font-family: inherit;
   font-size: 1rem;
