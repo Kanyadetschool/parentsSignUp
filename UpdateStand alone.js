@@ -2,9 +2,23 @@
 function showDelayedSweetAlert() {
   Swal.fire({
     title: '🔕Notification!🧑‍⚕️',
-    html: `Dear Parent/Guardian,<br><br>
+    html: `
+          KNEC School Based Assessment will start in <br><br>
+     <div id="TimeUpdater"  class="animate__animated animate__zoomInRight" >
+             
+                    <div id="TimeUpdater-days">0 D</div>
+                    <div id="TimeUpdater-hours">0 Hrs</div>
+                    <div id="TimeUpdater-minutes">0 Min</div>
+                    <div id="TimeUpdater-seconds">0 Sec</div>
+                  </div>
+
+    Dear Parent/Guardian,<br><br>
     We would like to inform you about the upcoming written test schedule for different <b>Grades</b>.
     Please find the details below:<br><br>
+
+
+ 
+            
     
     <strong>Grade 3</strong><br>
     Written Tests Begin: 30th September 2024<br>
@@ -65,11 +79,18 @@ function showDelayedSweetAlert() {
         8. Pre-Technical<br>
     </div>
 
-    We encourage you to help your child prepare for these assessments. Should you have any questions or need further information, please do not hesitate to contact us.`,
-    footer: '&copy; Examination Office | 2024',
-    confirmButtonText: 'OK'
+    We encourage you to help your child prepare for these assessments. Should you have any questions or need further information, please do not hesitate to contact us.<br><br>
+    <strong>Tags</strong><br>
+     <div class="tags">
+      </a> <a href="#"></a>
+      </a> <a href="#" target="_blank" > </a>
+  </div>
+    `,
+    footer: '&copy; Examination Office | 2024 ',
+    confirmButtonText: 'OK',
+   // allowOutsideClick:false,
   });
 }
 
 // Call the function after 2000 milliseconds (2 seconds)
-setTimeout(showDelayedSweetAlert, 5000);
+setTimeout(showDelayedSweetAlert, 2000);
