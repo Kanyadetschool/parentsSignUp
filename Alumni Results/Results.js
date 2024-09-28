@@ -1,19 +1,55 @@
 const openPopupBtns = document.querySelectorAll('.openPopupBtn');  // Select all buttons with class openPopupBtn
 const dataArrays = {
-  Grade8: {
-    title: 'Grade 8 Past Papers',  // Add a title for this array
+  Grade3: {
+    title: 'Grade 3 Past Papers',  // Add a title for this array
     years: [
       { year: '2024', terms: [
-        { term: 'Term 2', exams: ['Mathematics', 'Mathematics 2', 'Mathematics 3'] },
+        { term: 'End-Term 2', exams: ['Creative Art','Kusoma', 'English Activities', 'Environmental','Kiswahili','Mathematics','C.R.E',] },
       ]},
     ],
     files: {
-      'Mathematics': '2024 Mathematics pener.pdf',
-      'Mathematics 2': '2024 Mathematics pener.pdf',
-      'Final': '2022_final.pdf'
+      'Kusoma': '../Docs/2024/END-TERM II EXAMS/Grade 3/Kusoma.pdf',
+      'English Activities': '../Docs/2024/END-TERM II EXAMS/Grade 3/English.pdf',
+      'Environmental': '../Docs/2024/END-TERM II EXAMS/Grade 3/Environmental.pdf',
+      'Kiswahili': '../Docs/2024/END-TERM II EXAMS/Grade 3/Kiswahili.pdf',
+      'Mathematics': '../Docs/2024/END-TERM II EXAMS/Grade 3/Mathematics.pdf',
+      'C.R.E': '../Docs/2024/END-TERM II EXAMS/Grade 3/C.R.E.pdf',
+      'Creative Art': '../Docs/2024/END-TERM II EXAMS/Grade 3/Creative Art.pdf',
     }
   },
-  Grade7: {
+  Grade2: {
+    title: 'Grade 2 Past Papers',  // Add a title for this array
+    years: [
+      { year: '2024', terms: [
+        { term: 'End-Term 2', exams: ['Reading Activities', 'English Activities', 'Environmental','Kiswahili','Mathematics','C.R.E',] },
+      ]},
+    ],
+    files: {
+      'Reading Activities': '../Docs/2024/END-TERM II EXAMS/Grade 2/READING.pdf',
+      'English Activities': '../Docs/2024/END-TERM II EXAMS/Grade 2/English Activities.pdf',
+      'Environmental': '../Docs/2024/END-TERM II EXAMS/Grade 2/Environmental.pdf',
+      'Kiswahili': '../Docs/2024/END-TERM II EXAMS/Grade 2/Kiswahili.pdf',
+      'Mathematics': '../Docs/2024/END-TERM II EXAMS/Grade 2/Mathematics.pdf',
+      'C.R.E': '../Docs/2024/END-TERM II EXAMS/Grade 2/C.R.E.pdf',
+    }
+  },
+  Grade1: {
+    title: 'Grade 1 Past Papers',  // Add a title for this array
+    years: [
+      { year: '2024', terms: [
+        { term: 'End-Term 2', exams: ['Reading Activities', 'English Activities', 'Environmental','Kiswahili','Mathematics','C.R.E',] },
+      ]},
+    ],
+    files: {
+      'Reading Activities': '../Docs/2024/END-TERM II EXAMS/Grade 1/READING.pdf',
+      'English Activities': '../Docs/2024/END-TERM II EXAMS/Grade 1/English Activities.pdf',
+      'Environmental': '../Docs/2024/END-TERM II EXAMS/Grade 1/Environmental.pdf',
+      'Kiswahili': '../Docs/2024/END-TERM II EXAMS/Grade 1/Kiswahili.pdf',
+      'Mathematics': '../Docs/2024/END-TERM II EXAMS/Grade 1/Mathematics.pdf',
+      'C.R.E': '../Docs/2024/END-TERM II EXAMS/Grade 1/C.R.E.pdf',
+    }
+  },
+  Grade90: {
     title: 'Grade 7 Past Papers',  // Add a title for this array
     years: [
       { year: '2021', terms: [
