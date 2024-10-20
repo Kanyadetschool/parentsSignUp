@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Downloads Portal</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.28.0/feather.min.js"></script>
+    <style>
+        .resource-card {
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .resource-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        .category-pill.active {
+            background-color: #4F46E5;
+            color: white;
+        }
+        .download-btn {
+            transition: all 0.2s;
+        }
+        .download-btn:hover {
+            transform: translateY(-1px);
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <div class="max-w-6xl mx-auto p-6">
+        <header class="mb-8">
+            <h1 class="text-3xl font-bold text-gray-900 mb-2">Student Downloads Portal</h1>
+            <p class="text-gray-600">Access all your study materials in one place</p>
+        </header>
+
+        <!-- Search and Filter Section -->
+        <div class="mb-8">
+            <div class="flex flex-col md:flex-row gap-4 mb-4">
+                <div class="relative flex-1">
+                    <input type="text" id="search" 
+                           class="w-full pl-10 pr-4 py-2 border rounded-lg focus:outline-none focus:border-indigo-500"
+                           placeholder="Search resources...">
+                    <i data-feather="search" class="absolute left-3 top-3 text-gray-400"></i>
+                </div>
+                <div class="flex gap-2 overflow-x-auto pb-2">
+                    <button class="category-pill active px-4 py-2 rounded-full text-sm font-medium bg-gray-200 hover:bg-gray-300">
+                        All
+                    </button>
+                    <button class="category-pill px-4 py-2 rounded-full text-sm font-medium bg-gray-200 hover:bg-gray-300">
+                        Documents
+                    </button>
+                    <button class="category-pill px-4 py-2 rounded-full text-sm font-medium bg-gray-200 hover:bg-gray-300">
+                        Videos
+                    </button>
+                    <button class="category-pill px-4 py-2 rounded-full text-sm font-medium bg-gray-200 hover:bg-gray-300">
+                        Audio
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Resources Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="resources-grid">
+            <!-- Resource cards will be populated here -->
+        </div>
+    </div>
+
+    <!-- Modal for Document Selection -->
+    <div id="downloadModal" class="fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center hidden">
+        <div class="bg-white p-6 rounded-lg w-96">
+            <h2 class="text-xl font-semibold mb-4">Select Documents to Download</h2>
+            <form id="downloadForm">
+                <!-- Dynamically populate with documents -->
+            </form>
+            <div class="mt-4 flex justify-end">
+                <button id="startDownload" class="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700">Download</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Download Progress Bar -->
+    <div id="progressBarContainer" class="fixed bottom-4 inset-x-0 hidden">
+        <div class="max-w-3xl mx-auto bg-white p-4 rounded-lg shadow-lg">
+            <div class="flex justify-between items-center mb-2">
+                <span class="text-sm font-medium text-gray-700">Download Progress</span>
+                <span id="progressText" class="text-sm font-medium text-gray-700">0%</span>
+            </div>
+            <div class="w-full bg-gray-200 rounded-full h-2.5">
+                <div id="progressBar" class="bg-indigo-600 h-2.5 rounded-full" style="width: 0%;"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize Feather Icons
+        feather.replace();
+
+        // Sample data with download URLs
+        const resources = [
+            { title: "Introduction to Physics", type: "document", category: "Science", size: "2.5 MB", date: "2024-03-15", icon: "file-text", url: "./Docs/Revised Learning Areas.pdf" },
+            { title: "History Notes Chapter 5", type: "document", category: "History", size: "1.8 MB", date: "2024-03-14", icon: "file-text", url: "path/to/history_notes_chapter_5.pdf" },
+            { title: "Math Tutorial Video", type: "video", category: "Mathematics", size: "150 MB", date: "2024-03-13", icon: "video", url: "path/to/math_tutorial_video.mp4" }
+            // Add more resources here...
+        ];
+
+        // Function to create resource cards
+        function createResourceCard(resource) {
+            return `
+                <div class="resource-card bg-white rounded-lg shadow p-6">
+                    <div class="flex justify-between items-start mb-4">
+                        <h3 class="text-lg font-semibold text-gray-900">${resource.title}</h3>
+                        <i data-feather="${resource.icon}" class="text-gray-500"></i>
+                    </div>
+                    <div class="space-y-3">
+                        <div class="flex justify-between items-center">
+                            <span class="px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-sm">${resource.category}</span>
+                            <span class="text-sm text-gray-500">${resource.size}</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-gray-500">${resource.date}</span>
+                            <button class="download-btn flex items-center gap-2 bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700" onclick="openDownloadModal('${resource.title}', '${resource.url}')">
+                                <i data-feather="download" class="w-4 h-4"></i>
+                                Download
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Function to render resources
+        function renderResources(resources) {
+            const grid = document.getElementById('resources-grid');
+            grid.innerHTML = resources.map(resource => createResourceCard(resource)).join('');
+            feather.replace();
+        }
+
+        // Open modal to select document
+        function openDownloadModal(title, url) {
+            document.getElementById('downloadModal').classList.remove('hidden');
+            const form = document.getElementById('downloadForm');
+            form.innerHTML = `
+                <label class="flex items-center mb-2">
+                    <input type="checkbox" name="resource" value="${url}" class="mr-2">
+                    ${title}
+                </label>
+            `;
+        }
+
+        // Handle download initiation
+        document.getElementById('startDownload').addEventListener('click', function () {
+            document.getElementById('downloadModal').classList.add('hidden');
+            document.getElementById('progressBarContainer').classList.remove('hidden');
+            
+            let progress = 0;
+            const interval = setInterval(() => {
+                progress += 10;
+                document.getElementById('progressBar').style.width = `${progress}%`;
+                document.getElementById('progressText').innerText = `${progress}%`;
+
+                if (progress >= 100) {
+                    clearInterval(interval);
+                    document.getElementById('progressBarContainer').classList.add('hidden');
+                }
+            }, 300); // Simulates download progress
+        });
+
+        // Initial render
+        renderResources(resources);
+
+        // Search functionality
+        document.getElementById('search').addEventListener('input', (e) => {
+            const searchTerm = e.target.value.toLowerCase();
+            const filteredResources = resources.filter(resource => 
+                resource.title.toLowerCase().includes(searchTerm) ||
+                resource.category.toLowerCase().includes(searchTerm)
+            );
+            renderResources(filteredResources);
+        });
+    </script>
+</body>
+</html>

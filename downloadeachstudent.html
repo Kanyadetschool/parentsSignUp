@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NP Downloads Portal</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.28.0/feather.min.js"></script>
+    <!-- Include SweetAlert CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+<!-- Include SweetAlert JS -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <style>
+        .resource-card {
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .resource-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        .category-pill.active {
+            background-color: #4F46E5;
+            color: white;
+        }
+        .download-btn {
+            transition: all 0.2s;
+        }
+        .download-btn:hover {
+            transform: translateY(-1px);
+        }
+        .progress {
+            height: 5px;
+            background-color: #e0e0e0;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        .progress-bar {
+            height: 100%;
+            width: 0;
+            background-color: #4F46E5;
+            transition: width 0.2s;
+        }
+
+
+
+         :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --background: #ffffff;
+            --text: #1f2937;
+            --shadow: rgba(0, 0, 0, 0.1);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(8px);
+            opacity: 0;
+            animation: fadeIn 0.3s ease-out forwards;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            position: relative;
+            background: var(--background);
+            width: 90%;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: 0 25px 50px -12px var(--shadow);
+            transform: translateY(-50px);
+            opacity: 0;
+            animation: slideIn 0.5s ease-out 0.1s forwards;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideIn {
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .close {
+            position: absolute;
+            right: 1.5rem;
+            top: 1.5rem;
+            font-size: 1.5rem;
+            color: #9ca3af;
+            cursor: pointer;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.2s ease;
+        }
+
+        .close:hover {
+            background-color: #f3f4f6;
+            color: var(--text);
+            transform: rotate(90deg);
+        }
+
+        h2 {
+            color: var(--text);
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            padding-right: 2rem;
+        }
+
+        .url-list {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 1.5rem 0;
+            max-height: 300px;
+            overflow-y: auto;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+        }
+
+        .url-list::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .url-list::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 8px;
+        }
+
+        .url-list::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 8px;
+        }
+
+        .url-list li {
+            padding: 0.75rem 1rem;
+            border-bottom: 1px solid #e5e7eb;
+            display: flex;
+            align-items: center;
+            transition: background-color 0.2s ease;
+        }
+
+        .url-list li:last-child {
+            border-bottom: none;
+        }
+
+        .url-list li:hover {
+            background-color: #f9fafb;
+        }
+
+        .url-list input[type="checkbox"] {
+            margin-right: 1rem;
+            width: 18px;
+            height: 18px;
+            border-radius: 4px;
+            border: 2px solid #d1d5db;
+            cursor: pointer;
+        }
+
+        button {
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            font-size: 0.875rem;
+        }
+
+        .download-selected-btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            margin-right: 1rem;
+        }
+
+        .download-selected-btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 6px -1px var(--shadow);
+        }
+
+        .cancel-btn {
+            background-color: transparent;
+            border: 1px solid #e5e7eb;
+            color: var(--text);
+        }
+
+        .cancel-btn:hover {
+            background-color: #f9fafb;
+            border-color: #d1d5db;
+        }
+
+        /* Example items for demonstration */
+        #url-list {
+            min-height: 200px;
+        }
+        
+        #url-list li {
+            display: flex;
+            align-items: center;
+        }
+        
+    </style>
+</head>
+<body class="bg-gray-50">
+    <div class="max-w-6xl mx-auto p-6">
+        <header class="mb-8">
+            <h1 class="text-3xl font-bold text-gray-900 mb-2">Student Downloads Portal</h1>
+            <p class="text-gray-600">Access all your study materials in one place</p>
+        </header>
+
+        <!-- Search and Filter Section -->
+        <div class="mb-8">
+            <div class="flex flex-col md:flex-row gap-4 mb-4">
+                <div class="relative flex-1">
+                    <input type="text" id="search" 
+                           class="w-full pl-10 pr-4 py-2 border rounded-lg focus:outline-none focus:border-indigo-500"
+                           placeholder="Search resources...">
+                    <i data-feather="search" class="absolute left-3 top-3 text-gray-400"></i>
+                </div>
+                <div class="flex gap-2 overflow-x-auto pb-2">
+                    <button class="category-pill active px-4 py-2 rounded-full text-sm font-medium bg-gray-200 hover:bg-gray-300">
+                        All
+                    </button>
+                    <button class="category-pill px-4 py-2 rounded-full text-sm font-medium bg-gray-200 hover:bg-gray-300">
+                        Documents
+                    </button>
+                    <button class="category-pill px-4 py-2 rounded-full text-sm font-medium bg-gray-200 hover:bg-gray-300">
+                        Videos
+                    </button>
+                    <button class="category-pill px-4 py-2 rounded-full text-sm font-medium bg-gray-200 hover:bg-gray-300">
+                        Audio
+                    </button>
+                    <button class="category-pill px-4 py-2 rounded-full text-sm font-medium bg-gray-200 hover:bg-gray-300">
+                        Code
+                    </button>
+                </div>
+            </div >
+        </div>
+
+        <!-- Resources Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 " id="resources-grid">
+            <!-- Resource cards will be populated here -->
+        </div>
+        
+
+        <!-- Modal for download progress -->
+        <div id="download-modal" class="modal">
+            <div class="modal-content">
+                <span class="close" id="modal-close">&times;</span>
+                <h2>Select Files to Download</h2>
+                <ul id="url-list" class="url-list">
+                    <!-- Dynamic URL list will be populated here -->
+                </ul>
+                <button class="download-selected-btn">Download Selected</button>
+                <button class="cancel-btn">Cancel</button>
+            </div>
+        </div>
+        
+        
+        
+        
+        
+        
+    </div>
+
+    <script>
+    // Initialize Feather Icons
+feather.replace();
+
+/// Sample data with download URLs and unique download codes
+const resources = [
+    {
+        title: "Introduction to Physics",
+        type: "document",
+        category: "Science",
+        size: "2.5 MB",
+        date: "2024-03-15",
+        icon: "file-text",
+        urls: [
+            { url: "./Docs/Revised Learning Areas.pdf", downloadCode: "PHY123" },
+            { url: "https://example.com/physics_intro.pdf", downloadCode: "PHY124" }
+        ]
+    },
+    {
+        title: "History Notes Chapter 5",
+        type: "document",
+        category: "History",
+        size: "1.8 MB",
+        date: "2024-03-14",
+        icon: "file-text",
+        urls: [
+            { url: "https://example.com/history_notes_chapter_5.pdf", downloadCode: "HIS125" },
+            { url: "https://example.com/history_notes_chapter_4.pdf", downloadCode: "HIS126" }
+        ]
+    },
+    {
+        title: "Math Tutorial Video",
+        type: "video",
+        category: "Mathematics",
+        size: "150 MB",
+        date: "2024-03-13",
+        icon: "video",
+        urls: [
+            { url: "https://example.com/math_tutorial_video.mp4", downloadCode: "MAT127" }
+        ]
+    },
+    {
+        title: "Literature Study Guide",
+        type: "document",
+        category: "English",
+        size: "3.2 MB",
+        date: "2024-03-12",
+        icon: "book",
+        urls: [
+            { url: "https://example.com/literature_study_guide.pdf", downloadCode: "LIT128" },
+            { url: "https://example.com/literature_notes.pdf", downloadCode: "LIT129" }
+        ]
+    },
+    {
+        title: "Chemistry Lab Recording",
+        type: "video",
+        category: "Science",
+        size: "200 MB",
+        date: "2024-03-11",
+        icon: "video",
+        urls: [
+            { url: "https://example.com/chemistry_lab_recording.mp4", downloadCode: "CHE130" },
+            { url: "https://example.com/chemistry_experiment.mp4", downloadCode: "CHE131" }
+        ]
+    },
+    {
+        title: "Programming Basics PDF",
+        type: "document",
+        category: "Computer Science",
+        size: "4.5 MB",
+        date: "2024-03-10",
+        icon: "file-text",
+        urls: [
+            { url: "https://example.com/programming_basics.pdf", downloadCode: "PRO132" },
+            { url: "https://example.com/programming_advanced.pdf", downloadCode: "PRO133" }
+        ]
+    },
+    {
+        title: "Sample Audio Lecture",
+        type: "audio",
+        category: "Science",
+        size: "20 MB",
+        date: "2024-03-09",
+        icon: "headphones",
+        urls: [
+            { url: "https://example.com/sample_audio_lecture.mp3", downloadCode: "AUD134" }
+        ]
+    }
+];
+
+// Function to create resource cards
+function createResourceCard(resource) {
+    return `
+        <div class="resource-card bg-white rounded-lg shadow p-6">
+            <div class="flex justify-between items-start mb-4">
+                <h3 class="text-lg font-semibold text-gray-900">${resource.title}</h3>
+                <i data-feather="${resource.icon}" class="text-gray-500"></i>
+            </div>
+            <div class="space-y-3">
+                <div class="flex justify-between items-center">
+                    <span class="px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-sm">
+                        ${resource.category}
+                    </span>
+                    <span class="text-sm text-gray-500">${resource.size}</span>
+                </div>
+                <div class="flex justify-between items-center">
+                    <span class="text-sm text-gray-500">${resource.date}</span>
+                    <button class="download-btn flex items-center gap-2 bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700" data-title="${resource.title}">
+                        <i data-feather="download" class="w-4 h-4"></i>
+                        Download
+                    </button>
+                </div>
+            </div>
+        </div>
+    `;
+}
+
+// Function to render resources
+function renderResources(resources) {
+    const grid = document.getElementById('resources-grid');
+    grid.innerHTML = resources.map(resource => createResourceCard(resource)).join('');
+    feather.replace();
+
+    // Re-attach download button functionality
+    document.querySelectorAll('.download-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const title = btn.getAttribute('data-title');
+
+            // Find the selected resource by title
+            const selectedResource = resources.find(resource => resource.title === title);
+
+            // Populate the modal with URLs for the selected resource
+            const modalList = document.getElementById('url-list');
+            modalList.innerHTML = ''; // Clear previous items
+
+            // Create the "Select All" checkbox
+            const selectAllItem = document.createElement('li');
+            selectAllItem.innerHTML = `
+                <label>
+                    <input type="checkbox" id="select-all"> Select All
+                </label>
+            `;
+            modalList.appendChild(selectAllItem);
+
+            selectedResource.urls.forEach(item => {
+                const listItem = document.createElement('li');
+                listItem.className = 'url-item';
+                listItem.innerHTML = `
+                    <label>
+                        <input type="checkbox" class="url-checkbox" data-url="${item.url}" data-code="${item.downloadCode}">
+                        Download ${item.url.split('/').pop()})
+                    </label>
+                `;
+                modalList.appendChild(listItem);
+            });
+
+            // Show the modal
+            const modal = document.getElementById('download-modal');
+            modal.style.display = 'flex';
+
+            // Handle download for selected files
+            const downloadSelectedBtn = modal.querySelector('.download-selected-btn');
+            downloadSelectedBtn.onclick = async () => {
+                const selectedCheckboxes = modal.querySelectorAll('.url-checkbox:checked');
+
+                for (const checkbox of selectedCheckboxes) {
+                    const url = checkbox.getAttribute('data-url');
+                    const expectedCode = checkbox.getAttribute('data-code');
+
+                    // Use SweetAlert to prompt for the download code
+                    const { value: userCode } = await Swal.fire({
+                        title: 'Enter Download Code',
+                        input: 'text',
+                        inputLabel: `Enter the download code for ${url.split('/').pop()}`,
+                        showCancelButton: true,
+                        confirmButtonText: 'Download',
+                        cancelButtonText: 'Cancel',
+                        inputValidator: (value) => {
+                            if (!value) {
+                                return 'You need to enter a code!';
+                            }
+                        }
+                    });
+
+                    // Check if the user entered a code
+                    if (userCode) {
+                        if (userCode === expectedCode) {
+                            const filename = url.split('/').pop();
+
+                            // Create a new anchor element for download
+                            const a = document.createElement('a');
+                            a.href = url;
+                            a.download = filename;
+
+                            // Trigger the download
+                            a.click();
+                            Swal.fire('Download started!', '', 'success');
+                        } else {
+                            Swal.fire('Incorrect download code. Download rejected.', '', 'error');
+                        }
+                    }
+                }
+
+                modal.style.display = 'none'; // Close the modal after download
+            };
+
+            // Cancel button functionality
+            const cancelBtn = modal.querySelector('.cancel-btn');
+            cancelBtn.onclick = () => {
+                modal.style.display = 'none'; // Close the modal
+            };
+
+            // "Select All" checkbox functionality
+            const selectAllCheckbox = modal.querySelector('#select-all');
+            selectAllCheckbox.onclick = () => {
+                const checkboxes = modal.querySelectorAll('.url-checkbox');
+                checkboxes.forEach(checkbox => {
+                    checkbox.checked = selectAllCheckbox.checked;
+                });
+            };
+
+            // Show the modal and add click event to close it when clicking outside
+            modal.addEventListener('click', (event) => {
+                // Check if the click is on the modal backdrop
+                if (event.target === modal) {
+                    modal.style.display = 'none'; // Close the modal
+                }
+            });
+        });
+    });
+}
+
+// Initial render
+renderResources(resources);
+
+// Search functionality
+document.getElementById('search').addEventListener('input', (e) => {
+    const searchTerm = e.target.value.toLowerCase();
+    const filteredResources = resources.filter(resource => 
+        resource.title.toLowerCase().includes(searchTerm) ||
+        resource.category.toLowerCase().includes(searchTerm)
+    );
+    renderResources(filteredResources);
+});
+
+// Category filter functionality
+document.querySelectorAll('.category-pill').forEach(pill => {
+    pill.addEventListener('click', () => {
+        // Remove active class from all pills
+        document.querySelectorAll('.category-pill').forEach(p => 
+            p.classList.remove('active'));
+        
+        // Add active class to clicked pill
+        pill.classList.add('active');
+
+        const category = pill.textContent.trim().toLowerCase();
+
+        let filteredResources = resources;
+
+        if (category !== 'all') {
+            // Adjusted filter logic to check the type against the pill's text
+            filteredResources = resources.filter(resource => {
+                if (category === 'documents') {
+                    return resource.type === 'document';
+                } else if (category === 'videos') {
+                    return resource.type === 'video';
+                } else if (category === 'audio') {
+                    return resource.type === 'audio';
+                }
+                return true;
+            });
+        }
+
+        renderResources(filteredResources);
+    });
+});
+
+    </script>
+</body>
+</html>

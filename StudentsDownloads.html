@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Students Downloads Portal</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.28.0/feather.min.js"></script>
+    <link rel="stylesheet" href="StudentsDownloads.css">
+    <link rel="stylesheet" href="swalOnly.css">
+        <!-- Include SweetAlert CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+<!-- Include SweetAlert JS -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
+</head>
+<body class="bg-gray-50">
+    <div class="max-w-6xl mx-auto p-6">
+        <header class="mb-8">
+            <h1 class="text-3xl font-bold text-gray-900 mb-2">Student Downloads Portal</h1>
+            <p class="text-gray-600">Access all your study materials in one place</p>
+        </header>
+
+        <!-- Search and Filter Section -->
+        <div class="mb-8">
+            <div class="flex flex-col md:flex-row gap-4 mb-4">
+                <div class="relative flex-1">
+                    <input type="text" id="search" 
+                           class="w-full pl-10 pr-4 py-2 border rounded-lg focus:outline-none focus:border-indigo-500"
+                           placeholder="Search resources...">
+                    <i data-feather="search" class="absolute left-3 top-3 text-gray-400"></i>
+                </div>
+                <div class="flex gap-2 overflow-x-auto pb-2">
+                    <button class="category-pill active px-4 py-2 rounded-full text-sm font-medium bg-gray-200 hover:bg-gray-300">
+                        All
+                    </button>
+                    <button class="category-pill px-4 py-2 rounded-full text-sm font-medium bg-gray-200 hover:bg-gray-300">
+                        Documents
+                    </button>
+                    <button class="category-pill px-4 py-2 rounded-full text-sm font-medium bg-gray-200 hover:bg-gray-300">
+                        Videos
+                    </button>
+                    <button class="category-pill px-4 py-2 rounded-full text-sm font-medium bg-gray-200 hover:bg-gray-300">
+                        Audio
+                    </button>
+                </div>
+            </div >
+        </div>
+
+        <!-- Resources Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 " id="resources-grid">
+            <!-- Resource cards will be populated here -->
+        </div>
+        
+
+        <!-- Modal for download progress -->
+        <div id="download-modal" class="modal">
+            <div class="modal-content">
+                <span class="close" id="modal-close">&times;</span>
+                <h2>Select Files to Download</h2>
+                <ul id="url-list" class="url-list">
+                    <!-- Dynamic URL list will be populated here -->
+                </ul>
+                <button class="download-selected-btn">Download Selected</button>
+                <button class="cancel-btn">Cancel</button>
+            </div>
+        </div>
+        <script src="./studentsconfig.js"></script>
+        <script src="./StudentsDownloadsMain.js" defer></script>
+        
+        
+        
+        
+        
+    </div>
+
+    
+</body>
+</html>

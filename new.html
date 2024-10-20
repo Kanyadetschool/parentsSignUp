@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Student Downloads Portal 2.0</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+    <style>
+        /* Modern Custom Properties */
+        :root {
+            --primary-color: #4F46E5;
+            --primary-dark: #4338CA;
+            --success-color: #10B981;
+            --warning-color: #F59E0B;
+            --error-color: #EF4444;
+            --animation-timing: 0.3s;
+        }
+        
+        .dark-mode {
+            --bg-primary: #1F2937;
+            --bg-secondary: #111827;
+            --text-primary: #F9FAFB;
+            --text-secondary: #D1D5DB;
+        }
+
+        /* Enhanced Animations */
+        @keyframes slideIn {
+            from {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.8;
+                transform: scale(1.05);
+            }
+        }
+
+        .slide-in {
+            animation: slideIn var(--animation-timing) ease-out;
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        /* Modern Card Styles */
+        .resource-card {
+            transition: all var(--animation-timing) cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .resource-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.6s;
+        }
+
+        .resource-card:hover::before {
+            transform: translateX(100%);
+        }
+
+        .resource-card:hover {
+            transform: translateY(-4px) scale(1.01);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+                       0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        /* Advanced Progress Ring */
+        .progress-ring {
+            transform: rotate(-90deg);
+        }
+
+        .progress-ring circle {
+            transition: stroke-dashoffset var(--animation-timing) ease-in-out;
+        }
+
+        /* Enhanced Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-secondary);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-color);
+            border-radius: 4px;
+            transition: background var(--animation-timing);
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary-dark);
+        }
+
+        /* Glass Morphism Effects */
+        .glass {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .dark .glass {
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        /* Loading States */
+        .skeleton {
+            background: linear-gradient(
+                90deg,
+                rgba(255, 255, 255, 0.1),
+                rgba(255, 255, 255, 0.2),
+                rgba(255, 255, 255, 0.1)
+            );
+            background-size: 200% 100%;
+            animation: loading 1.5s infinite;
+        }
+
+        @keyframes loading {
+            0% {
+                background-position: 200% 0;
+            }
+            100% {
+                background-position: -200% 0;
+            }
+        }
+
+        /* Modern Toast Notifications */
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transform: translateY(100%);
+            opacity: 0;
+            transition: all var(--animation-timing);
+        }
+
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 transition-colors duration-200" id="body">
+    <!-- Modern Navigation Bar with Glass Effect -->
+    <nav class="fixed w-full z-50 glass dark:bg-opacity-90">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center space-x-4">
+                    <div class="flex items-center">
+                        <svg class="h-8 w-8 text-indigo-600" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                                  d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                        </svg>
+                        <h1 class="ml-2 text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-purple-600">
+                            StudentHub 2.0
+                        </h1>
+                    </div>
+                </div>
+
+                <!-- Enhanced User Progress -->
+                <div class="flex items-center space-x-6">
+                    <div class="hidden md:flex items-center space-x-2">
+                        <svg class="progress-ring" width="36" height="36">
+                            <circle class="text-gray-200" stroke-width="3" stroke="currentColor" fill="transparent" r="16" cx="18" cy="18"/>
+                            <circle class="text-indigo-600" stroke-width="3" stroke="currentColor" fill="transparent" r="16" cx="18" cy="18"
+                                    style="stroke-dasharray: 100; stroke-dashoffset: 25"/>
+                        </svg>
+                        <span class="text-sm font-medium">75% Complete</span>
+                    </div>
+
+                    <!-- Enhanced Theme Toggle -->
+                    <button id="theme-toggle" 
+                            class="p-2 rounded-lg bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors duration-200">
+                        <i class="fas fa-moon dark:text-yellow-300"></i>
+                    </button>
+
+                    <!-- Enhanced User Menu -->
+                    <div class="relative group">
+                        <button id="user-menu" class="flex items-center space-x-3 focus:outline-none">
+                            <div class="relative">
+                                <img src="/api/placeholder/40/40" alt="User" 
+                                     class="w-10 h-10 rounded-full border-2 border-indigo-600 transition-transform duration-200 transform group-hover:scale-110">
+                                <div class="absolute bottom-0 right-0 w-3 h-3 bg-green-500 rounded-full border-2 border-white"></div>
+                            </div>
+                            <div class="hidden md:block text-left">
+                                <p class="text-sm font-medium text-gray-900 dark:text-gray-200">John Doe</p>
+                                <p class="text-xs text-gray-500 dark:text-gray-400">Premium Student</p>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content with Enhanced Grid Layout -->
+    <div class="pt-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <!-- Enhanced Dashboard Stats -->
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+            <div class="resource-card bg-white dark:bg-gray-800 rounded-xl p-6">
+                <div class="flex justify-between items-start">
+                    <div>
+                        <p class="text-sm font-medium text-gray-500 dark:text-gray-400">Downloads</p>
+                        <div class="mt-2 flex items-baseline">
+                            <h3 class="text-2xl font-bold text-gray-900 dark:text-white">127</h3>
+                            <span class="ml-2 text-sm text-green-500">+12%</span>
+                        </div>
+                    </div>
+                    <div class="p-3 bg-indigo-500 bg-opacity-10 rounded-lg">
+                        <i class="fas fa-download text-indigo-600 dark:text-indigo-400"></i>
+                    </div>
+                </div>
+                <div class="mt-4">
+                    <div class="relative h-1 bg-gray-200 rounded-full overflow-hidden">
+                        <div class="absolute h-full bg-indigo-600 rounded-full" style="width: 75%"></div>
+                    </div>
+                </div>
+            </div>
+            <!-- Add similar enhanced stats cards for other metrics -->
+        </div>
+
+        <!-- Enhanced Search and Filters -->
+        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 mb-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div class="relative">
+                    <input type="text" id="search" 
+                           class="w-full pl-10 pr-4 py-3 border rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white transition-all duration-200"
+                           placeholder="Search resources...">
+                    <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                </div>
+                <!-- Enhanced filters and sort options -->
+            </div>
+        </div>
+
+        <!-- Enhanced Resources Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="resources-grid">
+            <!-- Resource cards will be dynamically generated here -->
+        </div>
+    </div>
+
+    <!-- Enhanced Preview Modal -->
+    <div id="preview-modal" class="fixed inset-0 bg-black bg-opacity-50 backdrop-filter backdrop-blur-sm hidden fade-in z-50">
+        <div class="flex items-center justify-center min-h-screen p-4">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-2xl max-w-4xl w-full transform transition-all duration-300">
+                <!-- Modal content -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Enhanced Toast Container -->
+    <div id="toast-container" class="fixed bottom-0 right-0 p-4 space-y-4"></div>
+
+    <script>
+        // Enhanced State Management using a more robust pattern
+        class Store {
+            constructor(initialState = {}) {
+                this.state = initialState;
+                this.listeners = new Set();
+            }
+
+            getState() {
+                return this.state;
+            }
+
+            setState(newState) {
+                this.state = { ...this.state, ...newState };
+                this.notify();
+            }
+
+            subscribe(listener) {
+                this.listeners.add(listener);
+                return () => this.listeners.delete(listener);
+            }
+
+            notify() {
+                this.listeners.forEach(listener => listener(this.state));
+            }
+        }
+
+        // Initialize store with enhanced state
+        const store = new Store({
+            resources: [],
+            filters: {
+                search: '',
+                type: 'all',
+                category: 'all',
+                timeFrame: 'all'
+            },
+            sort: 'recent',
+            bookmarks: new Set(),
+            theme: localStorage.getItem('theme') || 'light',
+            loading: false,
+            error: null
+        });
+
+        // Enhanced Resource Card Generation with Modern Design
+        function createResourceCard(resource) {
+            const card = document.createElement('div');
+            card.className = 'resource-card bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden slide-in';
+            
+            // Enhanced card HTML structure
+            card.innerHTML = `
+                <div class="relative">
+                    <img src="${resource.thumbnail}" alt="${resource.title}" 
+                         class="w-full h-48 object-cover transform transition-transform duration-300 hover:scale-105">
+                    <!-- Add enhanced card content -->
+                </div>
+            `;
+
+            return card;
+        }
+
+      
+
+        // Enhanced Animation Utility
+        const animate = {
+            fadeIn: (element, duration = 300) => {
+                element.style.opacity = 0;
+                element.style.display = 'block';
+                element.style.transition = `opacity ${duration}ms`;
+                setTimeout(() => element.style.opacity = 1, 10);
+                return new Promise(resolve => setTimeout(resolve, duration));
+            },
+            fadeOut: (element, duration = 300) => {
+                element.style.opacity = 1;
+                element.style.transition = `opacity ${duration}ms`;
+                element.style.opacity = 0;
+                return new Promise(resolve => {
+                    setTimeout(() => {
+                        element.style.display = 'none';
+                        resolve();
+                    }, duration);
+                });
+            },
+            slideIn: (element, duration = 300) => {
+                element.style.transform = 'translateY(20px)';
+                element.style.opacity = 0;
+                element.style.transition = `all ${duration}ms ease-out`;
+                setTimeout(() => {
+                    element.style.transform = 'translateY(0)';
+                    element.style.opacity = 1;
+                }, 10);
+                return new Promise(resolve => setTimeout(resolve, duration));
+            }
+        };
+
+        // Enhanced Toast Notification System
+        class ToastManager {
+            constructor() {
+                this.container = document.getElementById('toast-container');
+            }
+
+            show(message, type = 'info', duration = 3000) {
+                const toast = document.createElement('div');
+                toast.className = `toast glass flex items-center space-x-2 ${type}`;
+                
+                const icons = {
+                    success: 'fa-check-circle',
+                    error: 'fa-exclamation-circle',
+                    info: 'fa-info-circle',
+                    warning: 'fa-exclamation-triangle'
+                };
+
+                toast.innerHTML = `
+                    <i class="fas ${icons[type]} mr-2"></i>
+                    <span>${message}</span>
+                `;
+
+                this.container.appendChild(toast);
+                requestAnimationFrame(() => toast.classList.add('show'));
+
+                setTimeout(() => {
+                    toast.classList.remove('show');
+                    setTimeout(() => toast.remove(), 300);
+                }, duration);
+            }
+        }
+
+        // Enhanced Resource Management
+        class ResourceManager {
+            constructor(store) {
+                this.store = store;
+                this.toastManager = new ToastManager();
+            }
+
+            async fetchResources() {
+                this.store.setState({ loading: true });
+                try {
+                    // Simulated API call
+                    const resources = [
+                        {
+                            id: 1,
+                            title: "Advanced Physics Notes",
+                            author: "Prof. Smith",
+                            type: "document",
+                            category: "Physics",
+                            size: "2.5 MB",
+                            progress: 75,
+                            isNew: true,
+                            lastUpdated: "2 days ago",
+                            downloads: 156,
+                            thumbnail: "/api/placeholder/400/200",
+                            description: "Comprehensive notes covering quantum mechanics and relativity",
+                            rating: 4.8,
+                            reviewCount: 45
+                        },
+                        {
+                            id: 1,
+                            title: "Advanced Physics Notes",
+                            author: "Prof. Smith",
+                            type: "document",
+                            category: "Physics",
+                            size: "2.5 MB",
+                            progress: 75,
+                            isNew: true,
+                            lastUpdated: "2 days ago",
+                            downloads: 156,
+                            thumbnail: "/api/placeholder/400/200",
+                            description: "Comprehensive notes covering quantum mechanics and relativity",
+                            rating: 4.8,
+                            reviewCount: 45
+                        },
+                        // Add more sample resources...
+                    ];
+
+                    await new Promise(resolve => setTimeout(resolve, 1000)); // Simulate network delay
+                    this.store.setState({ resources, loading: false });
+                } catch (error) {
+                    this.store.setState({ error: error.message, loading: false });
+                    this.toastManager.show('Failed to load resources', 'error');
+                }
+            }
+
+            async downloadResource(id) {
+                const resource = this.store.getState().resources.find(r => r.id === id);
+                if (!resource) return;
+
+                this.toastManager.show(`Downloading ${resource.title}...`, 'info');
+                
+                try {
+                    await new Promise(resolve => setTimeout(resolve, 2000)); // Simulate download
+                    this.toastManager.show(`Successfully downloaded ${resource.title}`, 'success');
+                    
+                    // Update download count
+                    const updatedResources = this.store.getState().resources.map(r => 
+                        r.id === id ? { ...r, downloads: r.downloads + 1 } : r
+                    );
+                    this.store.setState({ resources: updatedResources });
+                } catch (error) {
+                    this.toastManager.show(`Failed to download ${resource.title}`, 'error');
+                }
+            }
+        }
+
+        // Enhanced UI Components
+        class UIComponents {
+            static createResourceCard(resource, actions) {
+                const card = document.createElement('div');
+                card.className = 'resource-card bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden slide-in';
+                
+                card.innerHTML = `
+                    <div class="relative">
+                        <img src="${resource.thumbnail}" alt="${resource.title}" 
+                             class="w-full h-48 object-cover transform transition-transform duration-300 hover:scale-105">
+                        <div class="absolute top-2 right-2 flex space-x-2">
+                            <button class="bookmark-btn p-2 bg-white rounded-full shadow hover:bg-gray-100 transition-colors duration-200" 
+                                    data-id="${resource.id}">
+                                <i class="far fa-bookmark"></i>
+                            </button>
+                        </div>
+                        ${resource.isNew ? `
+                            <div class="absolute top-2 left-2">
+                                <span class="px-3 py-1 bg-green-500 text-white rounded-full text-xs font-medium">
+                                    New
+                                </span>
+                            </div>
+                        ` : ''}
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
+                                ${resource.title}
+                            </h3>
+                            <div class="flex items-center">
+                                <span class="text-yellow-400">★</span>
+                                <span class="ml-1 text-sm text-gray-600 dark:text-gray-400">
+                                    ${resource.rating} (${resource.reviewCount})
+                                </span>
+                            </div>
+                        </div>
+                        <p class="text-sm text-gray-500 dark:text-gray-400 mb-4">
+                            ${resource.description}
+                        </p>
+                        <div class="space-y-3">
+                            <div class="flex items-center text-sm text-gray-500 dark:text-gray-400">
+                                <i class="fas fa-user-graduate mr-2"></i>
+                                <span>${resource.author}</span>
+                            </div>
+                            <div class="flex items-center text-sm text-gray-500 dark:text-gray-400">
+                                <i class="fas fa-calendar mr-2"></i>
+                                <span>${resource.lastUpdated}</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <div class="flex items-center text-sm text-gray-500 dark:text-gray-400">
+                                    <i class="fas fa-download mr-2"></i>
+                                    <span>${resource.downloads} downloads</span>
+                                </div>
+                                <span class="text-sm text-gray-500 dark:text-gray-400">${resource.size}</span>
+                            </div>
+                        </div>
+                        <div class="mt-6 flex justify-between items-center">
+                            <button class="preview-btn p-3 bg-gray-100 dark:bg-gray-700 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors duration-200"
+                                    data-id="${resource.id}">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                            <button class="download-btn px-6 py-3 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors duration-200 flex items-center space-x-2"
+                                    data-id="${resource.id}">
+                                <i class="fas fa-download"></i>
+                                <span>Download</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="px-6 pb-4">
+                        <div class="relative w-full h-2 bg-gray-200 rounded-full overflow-hidden">
+                            <div class="absolute left-0 top-0 h-full bg-indigo-600 transition-all duration-300"
+                                 style="width: ${resource.progress}%"></div>
+                        </div>
+                        <div class="flex justify-between mt-1 text-xs text-gray-500 dark:text-gray-400">
+                            <span>Progress</span>
+                            <span>${resource.progress}%</span>
+                        </div>
+                    </div>
+                `;
+
+                // Attach event listeners
+                card.querySelector('.download-btn').addEventListener('click', () => actions.onDownload(resource.id));
+                card.querySelector('.preview-btn').addEventListener('click', () => actions.onPreview(resource.id));
+                card.querySelector('.bookmark-btn').addEventListener('click', () => actions.onBookmark(resource.id));
+
+                return card;
+            }
+        }
+
+        // Initialize application
+        document.addEventListener('DOMContentLoaded', () => {
+            const resourceManager = new ResourceManager(store);
+            const toastManager = new ToastManager();
+
+            // Initialize theme
+            const themeToggle = document.getElementById('theme-toggle');
+            const body = document.getElementById('body');
+
+            function updateTheme(theme) {
+                if (theme === 'dark') {
+                    body.classList.add('dark-mode');
+                    themeToggle.querySelector('i').classList.replace('fa-moon', 'fa-sun');
+                } else {
+                    body.classList.remove('dark-mode');
+                    themeToggle.querySelector('i').classList.replace('fa-sun', 'fa-moon');
+                }
+            }
+
+            themeToggle.addEventListener('click', () => {
+                const newTheme = body.classList.contains('dark-mode') ? 'light' : 'dark';
+                store.setState({ theme: newTheme });
+                localStorage.setItem('theme', newTheme);
+                updateTheme(newTheme);
+            });
+
+            // Initialize search and filters
+            const searchInput = document.getElementById('search');
+            searchInput.addEventListener('input', (e) => {
+                store.setState({ filters: { ...store.getState().filters, search: e.target.value } });
+            });
+
+            // Initialize grid
+            const grid = document.getElementById('resources-grid');
+            
+            // Subscribe to store updates
+            store.subscribe((state) => {
+                const filteredResources = state.resources.filter(resource => {
+                    const matchesSearch = resource.title.toLowerCase().includes(state.filters.search.toLowerCase()) ||
+                                        resource.author.toLowerCase().includes(state.filters.search.toLowerCase());
+                    return matchesSearch;
+                });
+
+                grid.innerHTML = '';
+                filteredResources.forEach(resource => {
+                    const card = UIComponents.createResourceCard(resource, {
+                        onDownload: (id) => resourceManager.downloadResource(id),
+                        onPreview: (id) => showPreview(id),
+                        onBookmark: (id) => toggleBookmark(id)
+                    });
+                    grid.appendChild(card);
+                });
+            });
+
+            // Initial load
+            resourceManager.fetchResources();
+            updateTheme(store.getState().theme);
+        });
+    </script>
+</body>
+</html>

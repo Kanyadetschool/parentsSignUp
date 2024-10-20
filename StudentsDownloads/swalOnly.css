@@ -37,6 +37,7 @@
   }
   ::placeholder{
       color: rgb(4, 3, 31);
+      text-align: center;
   }
   div#swal2-html-container.swal2-html-container {
     color: #d5cccc;
