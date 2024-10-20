@@ -1,7 +1,7 @@
 const Grade9 = [
     {
         title: "Jane Doe",
-        type: "document",
+        type: "SBA",
         category: "Grade 9",
         size: "1.2 MB",
         date: "2024-04-10",

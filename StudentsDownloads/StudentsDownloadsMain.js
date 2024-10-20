@@ -1,12 +1,13 @@
 // Import grade data from separate configuration files
 import Grade8 from './Grade8.js';
 import Grade9 from './Grade9.js';
+import SBA from './SBA.js';
 
 // Initialize Feather Icons
 feather.replace();
 
 // Combine all grades into a single resources array
-const resources = [...Grade8, ...Grade9];
+const resources = [...Grade8, ...Grade9,...SBA];
 
 // Create alert container
 const alertContainer = document.createElement('div');
@@ -89,10 +90,15 @@ function renderResources(resources) {
     grid.innerHTML = resources.map(resource => createResourceCard(resource)).join('');
     feather.replace();
 
- // Search functionality
-document.getElementById('search').addEventListener('input', (e) => {
+const searchInput = document.getElementById('search');
+const spinner = document.getElementById('spinner');
+
+searchInput.addEventListener('input', (e) => {
     const searchTerm = e.target.value.toLowerCase();
     
+    // Show the spinner while typing
+    spinner.style.display = 'block';
+
     if (searchTerm === '') {
         // Reload the page if the search input is cleared
         location.reload();
@@ -103,12 +109,33 @@ document.getElementById('search').addEventListener('input', (e) => {
         );
         renderResources(filteredResources);
 
-        // Show alert if no matching data is found
+        // Hide the spinner after processing
+        spinner.style.display = 'block';
+
+        // Show SweetAlert if no matching data is found
         if (filteredResources.length === 0) {
-            showAlert("No matching data found.", "error");
+           
+
+            // Clear the search input and reload after showing the SweetAlert
+            setTimeout(() => {
+                searchInput.value = ''; // Clear search input
+                location.reload(); // Reload the page
+            }, 1500); // Wait for 2 seconds before reloading
         }
     }
 });
+
+// Automatically focus and select all text in the search input after page reload
+window.addEventListener('load', () => {
+    searchInput.focus();
+    searchInput.select(); // Select all text in the search input
+});
+
+// Select all text in the search bar whenever it becomes active (focused)
+searchInput.addEventListener('focus', (e) => {
+    e.target.select(); // Select all text in the search input
+});
+
 
 
     // Re-attach download button functionality
@@ -238,6 +265,8 @@ document.querySelectorAll('.category-pill').forEach(pill => {
                     return resource.type === 'document';
                 } else if (category === 'videos') {
                     return resource.type === 'video';
+                } else if (category === 'cba') {
+                    return resource.type === 'cba';
                 } else if (category === 'audio') {
                     return resource.type === 'audio';
                 }
@@ -251,7 +280,7 @@ document.querySelectorAll('.category-pill').forEach(pill => {
 
 
 // Search functionality
-const searchInput = document.getElementById('search-input');
+const searchInput = document.getElementById('search');
 searchInput.addEventListener('input', (e) => {
     const searchTerm = e.target.value.toLowerCase();
     const filteredResources = resources.filter(resource => 

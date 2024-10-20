@@ -27,6 +27,29 @@
     background-color: #4F46E5;
     transition: width 0.2s;
 }
+.search-container {
+    position: relative; /* To position the spinner correctly */
+}
+
+.spinner {
+    position: absolute;
+    right: 10px; /* Adjust spacing as needed */
+    top: 30%;
+    transform: translateY(-50%); /* Center the spinner vertically */
+    width: 20px; /* Width of the spinner */
+    height: 20px; /* Height of the spinner */
+    border: 3px solid #f3f3f3; /* Light color for the spinner background */
+    border-top: 3px solid #3498db; /* Color for the spinner */
+    border-radius: 50%; /* Make it round */
+    animation: spin 1s linear infinite; /* Spin animation */
+    display: none; /* Hidden by default */
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
 
 
 
