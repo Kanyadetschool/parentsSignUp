@@ -5,7 +5,7 @@ const Grade9 = [
         category: "Grade 9",
         size: "1.2 MB",
         date: "2024-04-10",
-        icon: "file-text",
+        icon: "headphones",
         urls: [
             "https://example.com/document_9.pdf"
         ],

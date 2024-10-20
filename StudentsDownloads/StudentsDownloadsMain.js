@@ -90,6 +90,8 @@ function renderResources(resources) {
     grid.innerHTML = resources.map(resource => createResourceCard(resource)).join('');
     feather.replace();
 
+    
+
 const searchInput = document.getElementById('search');
 const spinner = document.getElementById('spinner');
 
@@ -290,8 +292,12 @@ searchInput.addEventListener('input', (e) => {
     
     renderResources(filteredResources);
 
-    // Show alert if no matching data is found
-    if (filteredResources.length === 0) {
-        showAlert("No matching data found.", "error");
-    }
+   // Assuming filteredResources is your array of matching data
+if (filteredResources.length === 0) {
+    showAlert("No matching data found.", "error");
+} else {
+    // Show alert if matching data is found
+    showAlert(`Found ${filteredResources.length} matching result(s).`, "success");
+}
+
 });
