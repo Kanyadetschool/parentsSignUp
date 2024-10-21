@@ -42,6 +42,12 @@
   div#swal2-html-container.swal2-html-container {
     color: #d5cccc;
     text-align: left;
+  
+    
+  }
+  div#swal2-html-container.swal2-html-container p {
+    font-size: 1.5rem;
+    font-weight: 600;
     
   }
   .swal2-html-container {

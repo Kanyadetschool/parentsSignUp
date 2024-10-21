@@ -1,0 +1,71 @@
+    /* Basic styles for the total display */
+   
+    #total-learners {
+   
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        padding: 20px;
+       
+        font-family: Arial, sans-serif;
+    }
+    #total-learners p{
+        display: inline-flex;
+        background-color: lavender;
+        color: black;
+        border-radius: 20px;
+        padding: 5px 10px;
+        margin: 5px;
+    }
+
+    h2 {
+        text-align: center;
+        color: #333; /* Dark text for better contrast */
+    }
+
+    p {
+        margin: 10px 0; /* Space between paragraphs */
+        font-size: 1rem; /* Base font size */
+        line-height: 1.5; /* Improve readability */
+        color: #555; /* Slightly lighter text color */
+    }
+
+    .toggle-button {
+        background-color: #4e46e5; /* Bootstrap primary color */
+        color: white;
+        border: none;
+        border-radius: 5px;
+        padding: 10px 20px;
+        cursor: pointer;
+        margin: 10px 0; /* Space around the button */
+        font-size: 1rem; /* Base font size */
+        transition: background-color 0.3s; /* Smooth transition for hover */
+    }
+
+    .toggle-button:hover {
+        background-color: #0056b3; /* Darker blue on hover */
+    }
+
+    /* Responsive styles */
+    @media (max-width: 768px) {
+        #total-learners {
+            padding: 15px; /* Reduce padding on smaller screens */
+        }
+
+        h2 {
+            font-size: 1.5rem; /* Larger title on smaller screens */
+        }
+
+        p {
+            font-size: 0.9rem; /* Smaller text size on small screens */
+        }
+    }
+
+    @media (max-width: 480px) {
+        h2 {
+            font-size: 1.2rem; /* Further reduce title size */
+        }
+
+        p {
+            font-size: 0.8rem; /* Further reduce text size */
+        }
+    }

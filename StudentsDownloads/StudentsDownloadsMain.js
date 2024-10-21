@@ -1,5 +1,6 @@
 // Import grade data from separate configuration files
-import Grade8 from './Grade8.js';
+import Grade1 from './Grade1.js';
+import Grade8 from './Grade7.js';
 import Grade9 from './Grade9.js';
 import SBA from './SBA.js';
 
@@ -7,7 +8,7 @@ import SBA from './SBA.js';
 feather.replace();
 
 // Combine all grades into a single resources array
-const resources = [...Grade8, ...Grade9,...SBA];
+const resources = [...Grade8, ...Grade9,...SBA,...Grade1];
 
 // Create alert container
 const alertContainer = document.createElement('div');
@@ -72,6 +73,7 @@ function createResourceCard(resource) {
                 </div>
                 <div class="flex justify-between items-center">
                     <span class="text-sm text-gray-500">${resource.date}</span>
+                    <span class="text-sm text-gray-500">${resource.age} yrs</span>
                     <button class="download-btn flex items-center gap-2 bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition-colors duration-200" 
                             data-title="${resource.title}" 
                             data-code="${resource.downloadCode}">
@@ -122,7 +124,7 @@ searchInput.addEventListener('input', (e) => {
             setTimeout(() => {
                 searchInput.value = ''; // Clear search input
                 location.reload(); // Reload the page
-            }, 1500); // Wait for 2 seconds before reloading
+            }, 300); // Wait for 2 seconds before reloading
         }
     }
 });
@@ -263,8 +265,8 @@ document.querySelectorAll('.category-pill').forEach(pill => {
 
         if (category !== 'all') {
             filteredResources = resources.filter(resource => {
-                if (category === 'documents') {
-                    return resource.type === 'document';
+                if (category === 'grade 8') {
+                    return resource.type === 'grade 8';
                 } else if (category === 'videos') {
                     return resource.type === 'video';
                 } else if (category === 'cba') {
@@ -301,5 +303,6 @@ if (filteredResources.length === 0) {
 }
 
 });
+
 
 

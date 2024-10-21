@@ -8,11 +8,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.28.0/feather.min.js"></script>
     <link rel="stylesheet" href="StudentsDownloads.css">
     <link rel="stylesheet" href="./swalOnly.css">
+    <link rel="stylesheet" href="./Countlearners.css">
         <!-- Include SweetAlert CSS -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
 <!-- Include SweetAlert JS -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script>
+<!-- <script>
     // Disable right-click
     document.addEventListener('contextmenu', function(e) {
         e.preventDefault();
@@ -24,7 +25,7 @@
             e.preventDefault();
         }
     });
-</script>
+</script>  -->
     
 </head>
 <body class="bg-gray-50">
@@ -34,22 +35,24 @@
             <p class="text-gray-600">Access all your childs  materials in one place</p>
         </header>
 
+      
+        
         <!-- Search and Filter Section -->
         <div class="mb-8">
             <div class="flex flex-col md:flex-row gap-4 mb-4">
                 <div class="relative flex-1">
                     <input type="text" id="search" 
                            class="w-full pl-10 pr-4 py-2 border rounded-lg focus:outline-none focus:border-indigo-500"
-                           placeholder="Search resources...">
+                           placeholder="Search first two letter name...">
                     <i data-feather="search" class="absolute left-3 top-3 text-gray-400"></i>
                     <div id="spinner" class="spinner" style="display: none;"></div>
                 </div>
                 <div class="flex gap-2 overflow-x-auto pb-2">
                     <button class="category-pill active px-4 py-2 rounded-full text-sm font-medium bg-gray-200 hover:bg-gray-300">
-                        All
+                        Students
                     </button>
                     <button class="category-pill px-4 py-2 rounded-full text-sm font-medium bg-gray-200 hover:bg-gray-300">
-                        Documents
+                       Transfered
                     </button>
                     <button class="category-pill px-4 py-2 rounded-full text-sm font-medium bg-gray-200 hover:bg-gray-300">
                         Videos
@@ -63,6 +66,8 @@
                 </div>
             </div >
         </div>
+        <button class="toggle-button" id="toggle-button">Toggle Total Learners</button>
+
 
         <!-- Resources Grid -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 " id="resources-grid">
@@ -74,7 +79,7 @@
         <div id="download-modal" class="modal">
             <div class="modal-content">
                 <span class="close" id="modal-close">&times;</span>
-                <h2>Select Files to Download</h2>
+                <h2>`Select Files to Download ${title}:`</h2>
                 <ul id="url-list" class="url-list">
                     <!-- Dynamic URL list will be populated here -->
                 </ul>
@@ -84,6 +89,7 @@
         </div>
      
         <script type="module" src="./StudentsDownloadsMain.js" defer></script>
+        <script type="module" src="./Countlearners.js" defer></script>
         
         
         

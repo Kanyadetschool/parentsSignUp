@@ -31,6 +31,8 @@
     position: relative; /* To position the spinner correctly */
 }
 
+
+
 .spinner {
     position: absolute;
     right: 10px; /* Adjust spacing as needed */
@@ -42,7 +44,7 @@
     border-top: 3px solid #3498db; /* Color for the spinner */
     border-radius: 50%; /* Make it round */
     animation: spin 1s linear infinite; /* Spin animation */
-    display: none; /* Hidden by default */
+    display: block; /* Hidden by default */
 }
 
 @keyframes spin {
