@@ -150,9 +150,9 @@ searchInput.addEventListener('focus', (e) => {
 
             // SweetAlert prompt for download code
             const { value: userCode } = await Swal.fire({
-                title: `Enter the Assessment Number for ${title}:`,
+                title: `Student Official Name: <br> 🧑‍⚕️ ${title}:`,
                 input: 'text',
-                inputPlaceholder: 'Eg A000B45645G',
+                inputPlaceholder: 'Enter Assessment Number',
                 showCancelButton: true,
                 confirmButtonText: 'Submit',
                 cancelButtonText: 'Cancel',

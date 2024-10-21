@@ -52,7 +52,13 @@
     100% { transform: rotate(360deg); }
 }
 
+.logo{
+    position: absolute;
+    right: 5%;
+    top: 10px;
+    height: 20%;
 
+}
 
 
  :root {
@@ -224,4 +230,17 @@ button {
 #url-list li {
     display: flex;
     align-items: center;
+}
+
+@media (max-width: 550px){
+
+    .logo{
+        position: absolute;
+        right: 5%;
+        top: 25px;
+        height: 10%;
+        background-color: rgb(255, 252, 252);
+        border-radius: 10px;
+        
+    }
 }
