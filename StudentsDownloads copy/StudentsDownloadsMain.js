@@ -1,12 +1,6 @@
 // Import grade data from separate configuration files
 import Grade1 from './Grade1.js';
-import Grade2 from './Grade2.js';
-import Grade3 from './Grade3.js';
-import Grade4 from './Grade4.js';
-import Grade5 from './Grade5.js';
-import Grade6 from './Grade6.js';
-import Grade7 from './Grade7.js';
-import Grade8 from './Grade8.js';
+import Grade8 from './Grade7.js';
 import Grade9 from './Grade9.js';
 import SBA from './SBA.js';
 
@@ -14,7 +8,7 @@ import SBA from './SBA.js';
 feather.replace();
 
 // Combine all grades into a single resources array
-const resources = [...Grade1,...Grade2,...Grade3,...Grade4,...Grade5, ...Grade6,...Grade7,...Grade8, ...Grade9,...SBA];
+const resources = [...Grade8, ...Grade9,...SBA,...Grade1];
 
 // Create alert container
 const alertContainer = document.createElement('div');
@@ -73,9 +67,8 @@ function createResourceCard(resource) {
             <div class="space-y-3">
                 <div class="flex justify-between items-center">
                     <span class="px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-sm">
-                        ${resource.category}  
+                        ${resource.category}
                     </span>
-                    <span class="text-sm text-gray-500">${resource.downloadCode}</span>
                     <span class="text-sm text-gray-500">${resource.size}</span>
                 </div>
                 <div class="flex justify-between items-center">
@@ -185,7 +178,6 @@ searchInput.addEventListener('focus', (e) => {
             // Populate modal with URLs
             const modalList = document.getElementById('url-list');
             modalList.innerHTML = '';
-            
 
             // Add "Select All" checkbox
             const selectAllItem = document.createElement('li');
@@ -196,8 +188,6 @@ searchInput.addEventListener('focus', (e) => {
                 </label>
             `;
             modalList.appendChild(selectAllItem);
-
-            
 
             selectedResource.urls.forEach(url => {
                 const listItem = document.createElement('li');
@@ -254,16 +244,6 @@ searchInput.addEventListener('focus', (e) => {
                     checkbox.checked = selectAllCheckbox.checked;
                 });
             };
-
-             // Show the modal and add click event to close it when clicking outside
-             modal.addEventListener('click', (event) => {
-                // Check if the click is on the modal backdrop
-                if (event.target === modal) {
-                    modal.style.display = 'none'; // Close the modal
-                }
-            });
-
-            
         });
     });
 }
@@ -285,44 +265,14 @@ document.querySelectorAll('.category-pill').forEach(pill => {
 
         if (category !== 'all') {
             filteredResources = resources.filter(resource => {
-                
-                if (category === 'grade 1') {
-                    return resource.type === 'grade 1';
-                } 
-                else if (category === 'grade 2') {
-                    return resource.type === 'grade 2';
-                } 
-                
-                else if (category === 'grade 3') {
-                    return resource.type === 'grade 3';
-                }
-                
-                
-                else if (category === 'grade 4') {
-                    return resource.type === 'grade 4';
-                }
-                
-                
-                else if (category === 'grade 5') {
-                    return resource.type === 'grade 5';
-                }
-                
-                
-                else if (category === 'grade 6') {
-                    return resource.type === 'grade 6';
-                }
-                
-                
-                else if (category === 'grade 7') {
-                    return resource.type === 'grade 7';
-                }
-                
-                else if (category === 'grade 8') {
+                if (category === 'grade 8') {
                     return resource.type === 'grade 8';
-                }
-
-                else if (category === 'grade 9') {
-                    return resource.type === 'grade 9';
+                } else if (category === 'videos') {
+                    return resource.type === 'video';
+                } else if (category === 'cba') {
+                    return resource.type === 'cba';
+                } else if (category === 'audio') {
+                    return resource.type === 'audio';
                 }
                 return true;
             });

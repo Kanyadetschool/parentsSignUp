@@ -1,20 +1,33 @@
-const SBA = [
+const Grade9 = [
     {
-        title: "trial",
-        type: "cba",
-        category: "SBA",
+        title: "Jane Doe",
+        type: "SBA",
+        category: "Grade 9",
         size: "1.2 MB",
-        date: "2024-04-10",
-        icon: "file-text",
-        age:"",
+        date: "2005-04-10", // Assuming this is the date of birth
+        icon: "headphones",
+        age: "",
         urls: [
             "https://example.com/document_9.pdf"
         ],
         downloadCode: "pass123"
     },
-   
+    {
+        title: "TEST",
+        type: "SBA",
+        category: "Grade 9",
+        size: "1.2 MB",
+        date: "2007-04-10", // Assuming this is the date of birth
+        icon: "headphones",
+        age: "",
+        urls: [
+            "https://example.com/document_9.pdf"
+        ],
+        downloadCode: "pass123"
+    },
     // Add more resources for Grade 9 here
 ];
+
 // Function to calculate age based on date of birth
 function calculateAge(dob) {
     const birthDate = new Date(dob);
@@ -31,11 +44,11 @@ function calculateAge(dob) {
 }
 
 // Update the age in each student object
-SBA.forEach(student => {
+Grade9.forEach(student => {
     student.age = calculateAge(student.date);
 });
 
-// Exporting the updated SBA array
-export default SBA;
+// Exporting the updated Grade9 array
+export default Grade9;
 
-console.log(SBA); // For debugging purposes to see the updated array
+console.log(Grade9); // For debugging purposes to see the updated array

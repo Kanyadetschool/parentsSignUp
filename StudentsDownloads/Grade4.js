@@ -1,9 +1,10 @@
-const Grade9 = [
+const Grade4 = [
     {
         title: "Jane Doe",
-        type: "grade 9",
-        category: "Grade 9",
+        type: "grade 4",
+        category: "Grade 4",
         size: "1.2 MB",
+        AssessmentNo:"",
         date: "2005-04-10", // Assuming this is the date of birth
         icon: "headphones",
         age: "",
@@ -13,9 +14,9 @@ const Grade9 = [
         downloadCode: "pass123"
     },
     {
-        title: "TEST",
-        type: "grade 9",
-        category: "Grade 9",
+        title: "TEST 4",
+        type: "grade 4",
+        category: "Grade 4",
         size: "1.2 MB",
         date: "2007-04-10", // Assuming this is the date of birth
         icon: "headphones",
@@ -25,7 +26,20 @@ const Grade9 = [
         ],
         downloadCode: "pass123"
     },
-    // Add more resources for Grade 9 here
+    {
+        title: "TEST 4",
+        type: "grade 4",
+        category: "Grade 4",
+        size: "1.2 MB",
+        date: "2007-04-10", // Assuming this is the date of birth
+        icon: "headphones",
+        age: "",
+        urls: [
+            "https://example.com/document_9.pdf"
+        ],
+        downloadCode: "pass123"
+    },
+    // Add more resources for Grade 4 here
 ];
 
 // Function to calculate age based on date of birth
@@ -44,11 +58,11 @@ function calculateAge(dob) {
 }
 
 // Update the age in each student object
-Grade9.forEach(student => {
+Grade4.forEach(student => {
     student.age = calculateAge(student.date);
 });
 
-// Exporting the updated Grade9 array
-export default Grade9;
+// Exporting the updated Grade4 array
+export default Grade4;
 
-console.log(Grade9); // For debugging purposes to see the updated array
+console.log(Grade4); // For debugging purposes to see the updated array

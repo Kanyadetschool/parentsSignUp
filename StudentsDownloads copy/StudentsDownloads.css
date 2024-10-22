@@ -32,10 +32,11 @@
 }
 
 
+
 .spinner {
     position: absolute;
     right: 10px; /* Adjust spacing as needed */
-    top: 20%;
+    top: 30%;
     transform: translateY(-50%); /* Center the spinner vertically */
     width: 20px; /* Width of the spinner */
     height: 20px; /* Height of the spinner */
@@ -93,11 +94,7 @@
     box-shadow: 0 25px 50px -12px var(--shadow);
     transform: translateY(-50px);
     opacity: 0;
-    overflow-y: scroll;
     animation: slideIn 0.5s ease-out 0.1s forwards;
-}
-::-webkit-scrollbar{
-    display: none;
 }
 
 @keyframes fadeIn {
@@ -218,13 +215,7 @@ button {
     background-color: transparent;
     border: 1px solid #e5e7eb;
     color: var(--text);
-    margin: 10px;
 }
-/* div.flex.gap-2.overflow-x-auto.pb-2{
-    width: 80% !important;
-
-} */
-
 
 .cancel-btn:hover {
     background-color: #f9fafb;
@@ -241,7 +232,7 @@ button {
     align-items: center;
 }
 
-@media (max-width: 750px){
+@media (max-width: 550px){
 
     .logo{
         position: absolute;
@@ -251,9 +242,5 @@ button {
         background-color: rgb(255, 252, 252);
         border-radius: 10px;
         
-    }
-    div.flex.gap-2.overflow-x-auto.pb-2{
-        width: 100% !important;
-    
     }
 }

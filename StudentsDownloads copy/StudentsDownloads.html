@@ -32,7 +32,7 @@
 <body class="bg-gray-50">
     <div class="max-w-6xl mx-auto p-6">
         <header class="mb-8">
-            <h1 class="text-3xl font-bold text-gray-900 mb-2">Student <br>Downloads Portal</h1>
+            <h1 class="text-3xl font-bold text-gray-900 mb-2">Student Downloads Portal</h1>
             <p class="text-gray-600">Access all your childs  materials in one place</p>
         </header>
 
@@ -46,45 +46,30 @@
                 <div class="relative flex-1">
                     <input type="text" id="search" 
                            class="w-full pl-10 pr-4 py-2 border rounded-lg focus:outline-none focus:border-indigo-500"
-                           placeholder="Search name">
+                           placeholder="Search first two letter name...">
                     <i data-feather="search" class="absolute left-3 top-3 text-gray-400"></i>
                     <div id="spinner" class="spinner" style="display: none;"></div>
                 </div>
                 <div class="flex gap-2 overflow-x-auto pb-2">
                     <button class="category-pill active px-4 py-2 rounded-full text-sm font-medium bg-gray-200 hover:bg-gray-300">
-                       All 
+                        Students
                     </button>
                     <button class="category-pill px-4 py-2 rounded-full text-sm font-medium bg-gray-200 hover:bg-gray-300">
-                       Grade 1
+                       Transfered
                     </button>
                     <button class="category-pill px-4 py-2 rounded-full text-sm font-medium bg-gray-200 hover:bg-gray-300">
-                        Grade 2
+                        Videos
                     </button>
                     <button class="category-pill px-4 py-2 rounded-full text-sm font-medium bg-gray-200 hover:bg-gray-300">
-                        Grade 3
+                        Audio
                     </button>
                     <button class="category-pill px-4 py-2 rounded-full text-sm font-medium bg-gray-200 hover:bg-gray-300">
-                        Grade 4
-                    </button>
-                    <button class="category-pill px-4 py-2 rounded-full text-sm font-medium bg-gray-200 hover:bg-gray-300">
-                        Grade 5
-                    </button>
-                    <button class="category-pill px-4 py-2 rounded-full text-sm font-medium bg-gray-200 hover:bg-gray-300">
-                        Grade 6
-                    </button>
-                    <button class="category-pill px-4 py-2 rounded-full text-sm font-medium bg-gray-200 hover:bg-gray-300">
-                      Grade 7
-                    </button>
-                    <button class="category-pill px-4 py-2 rounded-full text-sm font-medium bg-gray-200 hover:bg-gray-300">
-                        Grade 8
-                    </button>
-                    <button class="category-pill px-4 py-2 rounded-full text-sm font-medium bg-gray-200 hover:bg-gray-300">
-                        Grade 9
+                        cba
                     </button>
                 </div>
             </div >
         </div>
-        <button class="toggle-button" id="toggle-button">Total Learners</button>
+        <button class="toggle-button" id="toggle-button">Toggle Total Learners</button>
 
 
         <!-- Resources Grid -->
@@ -96,7 +81,8 @@
         <!-- Modal for download progress -->
         <div id="download-modal" class="modal">
             <div class="modal-content">
-                <h2>Select Files to Download:</h2>
+                <span class="close" id="modal-close">&times;</span>
+                <h2>`Select Files to Download ${title}:`</h2>
                 <ul id="url-list" class="url-list">
                     <!-- Dynamic URL list will be populated here -->
                 </ul>
@@ -109,7 +95,7 @@
         <script type="module" src="./Countlearners.js" defer></script>
         
         
-        <a href="../Docs/Grade-3-4-and-5-SBAs.pdf"></a>
+        
         
         
     </div>
