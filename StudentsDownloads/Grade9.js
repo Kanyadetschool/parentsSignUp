@@ -1,30 +1,5 @@
 const Grade9 = [
-    {
-        title: "Jane Doe",
-        type: "grade 9",
-        category: "Grade 9",
-        size: "1.2 MB",
-        date: "2005-04-10", // Assuming this is the date of birth
-        icon: "headphones",
-        age: "",
-        urls: [
-            "https://example.com/document_9.pdf"
-        ],
-        downloadCode: "pass123"
-    },
-    {
-        title: "TEST",
-        type: "grade 9",
-        category: "Grade 9",
-        size: "1.2 MB",
-        date: "2007-04-10", // Assuming this is the date of birth
-        icon: "headphones",
-        age: "",
-        urls: [
-            "https://example.com/document_9.pdf"
-        ],
-        downloadCode: "pass123"
-    },
+   
     // Add more resources for Grade 9 here
 ];
 

@@ -8,7 +8,7 @@ import Grade6 from './Grade6.js';
 import Grade7 from './Grade7.js'; // Corrected import
 import Grade8 from './Grade8.js';
 import Grade9 from './Grade9.js';
-import SBA from './SBA.js';
+
 
 // Function to calculate total learners
 function calculateTotals() {
@@ -21,9 +21,9 @@ function calculateTotals() {
     const totalGrade7 = Grade7.length;
     const totalGrade8 = Grade8.length;
     const totalGrade9 = Grade9.length;
-    const totalSBA = SBA.length;
 
-    const overallTotal = totalGrade1 +totalGrade2 + totalGrade3 + totalGrade4 + totalGrade5  +totalGrade6 + totalGrade7 + totalGrade8 + totalGrade9 + totalSBA;
+
+    const overallTotal = totalGrade1 +totalGrade2 + totalGrade3 + totalGrade4 + totalGrade5  +totalGrade6 + totalGrade7 + totalGrade8 + totalGrade9;
 
     // Return the totals in an object
     return {
@@ -37,7 +37,7 @@ function calculateTotals() {
         totalGrade7,
         totalGrade8,
         totalGrade9,
-        totalSBA
+       
     };
 }
 
@@ -57,7 +57,6 @@ document.getElementById('toggle-button').addEventListener('click', async functio
         <p>🥯 Grade 7 Total: ${totals.totalGrade7} learners</p>
         <p>🥯 Grade 8 Total: ${totals.totalGrade8} learners</p>
         <p>🥯 Grade 9 Total: ${totals.totalGrade9} learners</p>
-        <p>🥯 SBA Total: ${totals.totalSBA} learners</p>
         <p>🥯 Overall Total: ${totals.overallTotal} learners</p>
         `,
         showCloseButton: true,

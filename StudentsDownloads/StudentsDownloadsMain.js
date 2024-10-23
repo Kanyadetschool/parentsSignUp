@@ -8,13 +8,13 @@ import Grade6 from './Grade6.js';
 import Grade7 from './Grade7.js';
 import Grade8 from './Grade8.js';
 import Grade9 from './Grade9.js';
-import SBA from './SBA.js';
+
 
 // Initialize Feather Icons
 feather.replace();
 
 // Combine all grades into a single resources array
-const resources = [...Grade1,...Grade2,...Grade3,...Grade4,...Grade5, ...Grade6,...Grade7,...Grade8, ...Grade9,...SBA];
+const resources = [...Grade1,...Grade2,...Grade3,...Grade4,...Grade5, ...Grade6,...Grade7,...Grade8, ...Grade9];
 
 // Create alert container
 const alertContainer = document.createElement('div');
@@ -329,6 +329,18 @@ document.querySelectorAll('.category-pill').forEach(pill => {
         }
 
         renderResources(filteredResources);
+
+   // Assuming filteredResources is your array of matching data
+   if (filteredResources.length === 0) {
+    showAlert("No matching data found.", "error");
+} else {
+    // Show alert if matching data is found
+    showAlert(`Found ${filteredResources.length}  learners in this class.`, "success");
+}
+
+
+
+
     });
 });
 

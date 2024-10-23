@@ -1,6 +1,6 @@
 const Grade2 = [
     {
-        title: "grade 2 Doe",
+        title: "Coming soon",
         type: "grade 2",
         category: "Grade 2",
         size: "1.2 MB",
@@ -13,19 +13,7 @@ const Grade2 = [
         ],
         downloadCode: "2024"
     },
-    {
-        title: "TEST",
-        type: "grade 2",
-        category: "Grade 2",
-        size: "1.2 MB",
-        date: "2007-04-10", // Assuming this is the date of birth
-        icon: "headphones",
-        age: "",
-        urls: [
-            "../Docs/Grade-3-4-and-5-SBAs.pdf"
-        ],
-        downloadCode: "2024"
-    },
+   
     // Add more resources for Grade 2 here
 ];
 
