@@ -591,7 +591,6 @@ img{
     font-size: var(--fs-lg);
     font-weight: 400;
     text-transform: capitalize;
-    color: #ffff;
     margin:0 0 12px;
     padding: 0 40px;
     position: relative;
@@ -767,6 +766,7 @@ position: absolute;
     backdrop-filter: blur(10px);
     z-index: 1000;
     border-radius: 10px;
+    overflow-y: scroll;
 }
 nav{
     flex-direction: 1;
@@ -846,6 +846,7 @@ nav ul li a{
     .nav-menu{
    
         right: 100px;
+        
     }
     .hamburger{
         background-image: url(images/logo.png);
@@ -856,8 +857,37 @@ nav ul li a{
         border: solid 2px lemonchiffon;
         border-radius: 3px;
         z-index: 1000;
+
+        
         
     }
+    .hamburger span{
+        padding: 10px;
+        color: red;
+        box-shadow: 3px 3px 3px red;
+        border: 3px solid black;
+        color: black;
+        background-color: transparent;
+        padding: 0px 10px 0px 10px;
+        border-radius: 10px;
+        font-family: 'Times New Roman', Times, serif;
+      
+    }
+    span{
+        padding: 2px 5px;
+        background-size: cover;
+        margin-bottom: 50px;
+        border-radius: 10px;
+        color: rgb(21, 21, 21);
+        font-family: 'Times New Roman', Times, serif;
+     background-color: transparent;
+     box-shadow: 3px 3px 3px red;
+        border: 3px solid black;
+        color: black;
+    
+    }
+
+
     .hamburger{
         display:none;
         cursor: pointer;
@@ -1396,6 +1426,7 @@ z-index: 1000;
        backdrop-filter: blur(10px);
         text-align: center;
         transition: 0.1s ease;
+       
         
 
     }
@@ -1449,7 +1480,7 @@ z-index: 1000;
            
         }
         .nav-menu li{
-            margin: 40px 50px 20px -40px;
+            margin: 10px ;
             font-size: 1.3rem;
         
         }
@@ -1475,9 +1506,7 @@ z-index: 1000;
 @media (max-width: 420px){
     ul.nav-menu{
         display: grid;
-        grid-template-columns: repeat(1,1fr);
-        height: 100vh;
-        overflow:scroll ;
+        grid-template-columns: repeat(2,1fr);
         margin: 10px;
        
     }
@@ -1496,4 +1525,8 @@ z-index: 1000;
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         gap: 30px;}
+
+        #fab1{
+            display: none;
+        }
 }
