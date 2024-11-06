@@ -23,7 +23,9 @@ body {
     transform-origin: center;
     -webkit-animation: rotate4 2s linear infinite;
     animation: rotate4 2s linear infinite;
+  
   }
+ 
   
   .loading circle {
     fill: none;
