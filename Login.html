@@ -1,12 +1,33 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Animated Login Form</title>
+	<title> Parents Login Form</title>
 	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link rel="stylesheet" type="text/css" href="css/swalOnly.css">
 	<link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
 	<script src="https://kit.fontawesome.com/a81368914c.js"></script>
-	<script src="https://cdn.auth0.com/js/auth0-spa-js/1.13/auth0-spa-js.production.js"></script> <!-- Include Auth0 library -->
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+		 <!-- Add Firebase SDK -->
+		 <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/9.6.0/firebase-app-compat.js"></script>
+		 <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/9.6.0/firebase-auth-compat.js"></script>
+		 <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/9.6.0/firebase-firestore-compat.js"></script>
+		 <script src="https://cdn.firebase.com/libs/firebaseui/2.5.1/firebaseui.js"></script>
+		   <!-- Add Firebase SDK -->
+    <style>
+        .message {
+            margin-top: 10px;
+            color: #ff0000;
+            text-align: center;
+            display: none;
+        }
+    </style>
+    <script type="module">
+        import { initAuth } from './js/auth.js';
+        initAuth();
+    </script>
 </head>
 <body>
 	<img class="wave" src="img/wave.png">
@@ -15,78 +36,95 @@
 			<img src="img/bg.svg">
 		</div>
 		<div class="login-content">
-			<form>
+			 <form onsubmit="login(event)">
+				<div id="user-display" class="user-welcome" style="display: none;"></div>
+			
 				<img src="img/avatar.svg">
-				<h2 class="title">Welcome BACK</h2>
-				<button id="login-btn" class="btn" type="button">Log In</button> <!-- Ensure button type is correct -->
-			</form>
-		</div>
-	</div>
-	<script>
-		// Global variable to hold the Auth0 client instance
-		let auth0 = null;
+				<h2 class="title">Parents portal.</h2>
+           		<div class="input-div one">
+           		   <div class="i">
+           		   		<i class="fas fa-user"></i>
+           		   </div>
+           		   <div class="div">
+           		   		<h5>Email</h5>
+           		   		<input type="email" class="input" id="email" required>
+           		   </div>
+           		</div>
+           		<div class="input-div pass">
+           		   <div class="i"> 
+           		    	<i class="fas fa-lock"></i>
+           		   </div>
+           		   <div class="div">
+           		    	<h5>Password</h5>
+           		    	<input type="password" class="input" id="password" required onkeydown="if(event.key === 'Enter') login(event)">
+            	   </div>
+            	</div>
+            	<a href="reset.html">Forgot Password?</a>
+            	<input type="submit" class="btn" value="Login">
+                <a href="signup.html" style="text-align: center; margin-top: 10px; display: block;">Don't have an account? Sign Up</a>
+                <div id="errorMessage" class="message"></div>
+            </form>
+        </div>
+    </div>
+    <script type="module">
+        import { auth } from './js/firebase-config.js';
+        import { signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-auth.js";
 
-		// Initialize Auth0 client
-		const initAuth0 = async () => {
-			auth0 = await createAuth0Client({
-				domain: "dev-glxfyfbedo8ukc2v.us.auth0.com",
-				client_id: "2XOYAwhUhPrlOlOaj1vkqaYCdWDHzTLm"
-			});
-		};
+        window.login = async function(e) {
+            e.preventDefault();
+            
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            
+            try {
+                await signInWithEmailAndPassword(auth, email, password);
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Welcome back!',
+                    text: 'Login successful',
+                    timer: 1500,
+                    showConfirmButton: false
+                }).then(() => {
+                    window.location.href = "index.html";
+                });
+            } catch (error) {
+                let errorMessage = 'An error occurred';
+                
+                switch (error.code) {
+                    case 'auth/user-not-found':
+                        errorMessage = 'No account found with this email';
+                        break;
+                    case 'auth/wrong-password':
+                        errorMessage = 'Incorrect password';
+                        break;
+                    default:
+                        errorMessage = error.message;
+                }
+                
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Login Failed',
+                    text: errorMessage,
+                    confirmButtonColor: '#182c59'
+                });
+            }
+        }
+    </script>
 
-		// Handle login
-		const login = async () => {
-			await auth0.loginWithRedirect({
-				redirect_uri: window.location.origin
-			});
-		};
-
-		// Handle authentication redirect
-		const handleRedirect = async () => {
-			const query = window.location.search;
-
-			// Check if the user is coming back from the Auth0 redirect
-			if (query.includes("code=") && query.includes("state=")) {
-				await auth0.handleRedirectCallback();
-				window.history.replaceState({}, document.title, window.location.pathname); // Clean the URL
-			}
-
-			// Get the user's authentication state
-			const isAuthenticated = await auth0.isAuthenticated();
-
-			if (isAuthenticated) {
-				// Hide the login button
-				document.getElementById("login-btn").style.display = "none";
-			} else {
-				// Show the login button
-				document.getElementById("login-btn").style.display = "block";
-			}
-		};
-
-		// Initialize Auth0 and handle redirect when the page loads
-		window.onload = async () => {
-			await initAuth0();
-			await handleRedirect();
-
-			// Add event listener for login button
-			document.getElementById("login-btn").addEventListener("click", login);
-		};
-	</script>
-	<script type="text/javascript" src="js/main.js"></script>
-
-
-	<script>
-		(function(d, w, c) {
-			w.BrevoConversationsID = '66d8988f9c10cd75760b654f';
-			w[c] = w[c] || function() {
-				(w[c].q = w[c].q || []).push(arguments);
-			};
-			var s = d.createElement('script');
-			s.async = true;
-			s.src = 'https://conversations-widget.brevo.com/brevo-conversations.js';
-			if (d.head) d.head.appendChild(s);
-		})(document, window, 'BrevoConversations');
-	  </script>
-	  <!-- /Brevo Conversations {/literal} -->
+     <!-- Brevo Conversations {literal} -->
+ <script>
+    (function(d, w, c) {
+        w.BrevoConversationsID = '66d8988f9c10cd75760b654f';
+        w[c] = w[c] || function() {
+            (w[c].q = w[c].q || []).push(arguments);
+        };
+        var s = d.createElement('script');
+        s.async = true;
+        s.src = 'https://conversations-widget.brevo.com/brevo-conversations.js';
+        if (d.head) d.head.appendChild(s);
+    })(document, window, 'BrevoConversations');
+  </script>
+  <!-- /Brevo Conversations {/literal} -->
+    <script type="text/javascript" src="js/main.js"></script>
 </body>
 </html>

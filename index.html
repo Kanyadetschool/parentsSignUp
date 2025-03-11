@@ -13,7 +13,6 @@
   
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <link rel="stylesheet" href="./ParentsLandingPage.css" />
-    <link rel="manifest" href="./manifest.json">
     <link rel="stylesheet" href="./loader.css" />
     <link rel="stylesheet" href="./Alumni Results/pdf.css" />
     <link rel="stylesheet" href="./swalOnly.css" />
@@ -21,6 +20,12 @@
     <link rel="stylesheet" href="./fontawesome.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js"></script>
+    <script type="module">
+        import { initAuth } from './js/auth.js';
+        document.addEventListener('DOMContentLoaded', () => {
+            initAuth();
+        });
+    </script>
 </head>
 <body>
     
@@ -104,7 +109,7 @@
                    
                 </p>
                 <div class="animate__animated animate__zoomInRight">
-          <div id="footer">Click out to close Updates dialog</div>
+                <div id="footer">Click out to close Updates dialog</div>
 </div>
                  <img src="./images/popupimagefooter.png" alt="" class="popupimagefooter">
                  
@@ -114,7 +119,7 @@
             <br><br>
        <div class="loading">
                 <svg viewBox="25 25 50 50">
-                    <circle r="20" cy="50" cx="50"></circle>
+                    <circle r="20" cy="50"></circle>
                   </svg>
                 </div>
 
@@ -541,14 +546,7 @@
                 <div class="container">
                     <h3>Follow us</h3>
                     <div class="social-links">
-                        <!-- <div id="installButtonContainer">
-                            <button class="btn" id="installButton">Install App</button>
-                          </div>
-                          <div id="thankYouMessage" style="display: none;">
-                            Thank you for installing the app!
-                          </div>
-                          <button id="shareButton" style="display: none;" class="btn">Share App</button> Share button initially hidden
-                       <br> -->
+                     
                   
                         <a href="https://web.facebook.com/kanyadetprischool/?_rdc=1&_rdr"title="facebook"> <i class="fab fa-facebook"></i></a>
                         <a href="#"title="whatsapp"> <i class="fab fa-whatsapp"></i></a>
@@ -563,6 +561,9 @@
     </div>
     </div>
     <script >
+        import { checkAuthState } from './js/auth.js';
+        checkAuthState();
+        
         // Import the functions you need from the SDKs you need
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-app.js";
         // TODO: Add SDKs for Firebase products that you want to use
@@ -585,8 +586,6 @@
 
      <script src="./loaderOnly.js"></script>
      <script src="./swal e-comunication.js"></script>
-     <script src="./install App Popup.js"></script>
-     <script src="./install App.js"></script>
      <script src="service-worker.js"></script>
      <script src="./MainPopups.js"></script>
      <script src="./contact Submssion.js"></script>
@@ -596,20 +595,7 @@
      <!-- <script src="./swalcountdown.js"></script> -->
        <!--style switcher end-->
 
- <!-- Brevo Conversations {literal} -->
- <script>
-    (function(d, w, c) {
-        w.BrevoConversationsID = '66d8988f9c10cd75760b654f';
-        w[c] = w[c] || function() {
-            (w[c].q = w[c].q || []).push(arguments);
-        };
-        var s = d.createElement('script');
-        s.async = true;
-        s.src = 'https://conversations-widget.brevo.com/brevo-conversations.js';
-        if (d.head) d.head.appendChild(s);
-    })(document, window, 'BrevoConversations');
-  </script>
-  <!-- /Brevo Conversations {/literal} -->
+
   
 
        
@@ -617,4 +603,5 @@
 
      <p class="rights">All rights reserved ©️ 2024 |  Developer Mr Geofrey | Naturing Every learners Potential</p>
     </div>
-</body> 
+</body>
+</html>

@@ -29,7 +29,7 @@ body {
   
   .loading circle {
     fill: none;
-    stroke: hsla(210, 5%, 92%, 0.795);
+    stroke: hsl(216, 71%, 1%);
     stroke-width: 6;
     stroke-dasharray: 1, 200;
     stroke-dashoffset: 0;

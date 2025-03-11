@@ -56,7 +56,7 @@ form{
 .login-content h2{
 	margin: 15px 0;
 	color: #333;
-	text-transform: uppercase;
+	/* text-transform: uppercase; */
 	font-size: 2.9rem;
 }
 
@@ -107,6 +107,9 @@ form{
 	height: 2px;
 	background-color: #38d39f;
 	transition: .4s;
+}
+div.i{
+	color: gray;
 }
 
 .input-div:before{

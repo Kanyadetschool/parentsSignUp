@@ -14,19 +14,14 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
 <!-- Include SweetAlert JS -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
- <!-- <script>
-    // Disable right-click
-    document.addEventListener('contextmenu', function(e) {
-        e.preventDefault();
-    });
 
-    // Disable F12, Ctrl+U, Ctrl+Shift+I
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'F12' || (e.ctrlKey && (e.key === 'u' || e.key === 'i'))) {
-            e.preventDefault();
-        }
+<script type="module">
+    import { initAuth } from '../js/auth.js';
+    document.addEventListener('DOMContentLoaded', () => {
+        initAuth();
     });
-</script>   -->
+</script>
+
     
 </head>
 <body class="bg-gray-50">

@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up | Kanyadet School Parents portal</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+	<link rel="stylesheet" type="text/css" href="css/swalOnly.css">
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: #f0f2f5;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-image: url('./img/BackgroundUniversal.jpg');
+            background-size: cover;
+            background-position: center;
+            font-family: "Poppins", sans-serif;
+        }
+
+        .container {
+            display: flex;
+            width: 100%;
+            max-width: 800px;
+            margin: 2rem;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
+
+        .left-panel {
+            flex: 1;
+            padding: 40px;
+            color: rgb(6, 3, 3);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .right-panel {
+            flex: 1;
+            padding: 40px;
+            background: white;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .form-group i.fas:not(.password-toggle) {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #182c59;
+        }
+
+        .password-toggle {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: #182c59;
+            z-index: 1;
+            margin-left: auto;
+            padding: 10px;
+            transition: color 0.3s ease;
+        }
+
+        .password-toggle:hover {
+            color: #020730;
+        }
+
+        input {
+            width: 100%;
+            padding: 15px 15px 15px 45px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+            padding-right: 45px; /* Add space for the toggle icon */
+        }
+
+        button {
+            background: linear-gradient(90deg, #182c59, #ff1cac);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            width: 100%;
+        }
+        h1{ 
+            margin: 0;
+        }
+
+        .message {
+
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .login-link {
+            margin-top: 20px;
+            text-align: center;
+            display: block;
+            color: #182c59;
+            text-decoration: none;
+        }
+        .CreateAccount:active{
+            background: linear-gradient(90deg, #050b18, #040329);
+            color: white;
+            scale: 0.8;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="left-panel">
+            <img src="./img/avatar.svg" alt="School Logo" style="width: 150px; margin-bottom: 20px;">
+            <h2>Kanyadet School</h2>
+            <h4>Parents Portal</h4>
+            <p>Create your account to access the portal</p>
+        </div>
+        <div class="right-panel">
+            <h1>Sign Up</h1>
+            <div id="signupForm">
+                <form onsubmit="signUp(); return false;">
+                    <div class="form-group">
+                        <i class="fas fa-user"></i>
+                        <input type="text" id="fullName" placeholder="Full Name" required>
+                    </div>
+                    <div class="form-group">
+                        <i class="fas fa-envelope"></i>
+                        <input type="email" id="email" placeholder="Email Address" required>
+                    </div>
+                    <div class="form-group">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" 
+                               id="password" 
+                               placeholder="Password" 
+                               autocomplete="new-password"
+                               data-lpignore="true" 
+                               required>
+                        <i class="fas fa-eye password-toggle" onclick="togglePassword('password')" id="togglePassword"></i>
+                    </div>
+                    <div class="form-group">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" 
+                               id="confirmPassword" 
+                               placeholder="Confirm Password" 
+                               autocomplete="new-password"
+                               data-lpignore="true" 
+                               required>
+                        <i class="fas fa-eye password-toggle" onclick="togglePassword('confirmPassword')" id="toggleConfirmPassword"></i>
+                    </div>
+                    <button type="submit" class="CreateAccount">Create Account</button>
+                    <p id="message" class="message"></p>
+                    <a href="login.html" class="login-link">Already have an account? Login</a>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Make togglePassword globally accessible
+        window.togglePassword = function(inputId) {
+            const input = document.getElementById(inputId);
+            const icon = document.getElementById('toggle' + inputId.charAt(0).toUpperCase() + inputId.slice(1));
+            
+            if (input.type === 'password') {
+                input.type = 'text';
+                icon.classList.remove('fa-eye');
+                icon.classList.add('fa-eye-slash');
+            } else {
+                input.type = 'password';
+                icon.classList.remove('fa-eye-slash');
+                icon.classList.add('fa-eye');
+            }
+        }
+    </script>
+
+    <script type="module">
+        import { auth, db } from './js/firebase-config.js';
+        import { createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-auth.js";
+        import { doc, setDoc } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-firestore.js";
+
+        window.signUp = async function() {
+            const fullName = document.getElementById('fullName').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            const passwordInput = document.getElementById('password');
+
+            // Add password strength check
+            const strongPassword = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+            
+            if (!strongPassword.test(password)) {
+                const result = await Swal.fire({
+                    icon: 'info',
+                    title: 'Weak Password',
+                    html: `
+                        Password must contain:<br>
+                        - At least 8 characters<br>
+                        - One uppercase letter<br>
+                        - One lowercase letter<br>
+                        - One number<br>
+                        - One special character
+                    `,
+                    showCancelButton: true,
+                    confirmButtonText: 'Use suggested password',
+                    cancelButtonText: 'Let me type again',
+                    confirmButtonColor: '#182c59'
+                });
+
+                if (result.isConfirmed) {
+                    // Generate a strong password
+                    const generatedPassword = generateStrongPassword();
+                    passwordInput.value = generatedPassword;
+                    document.getElementById('confirmPassword').value = generatedPassword;
+                    
+                    await Swal.fire({
+                        icon: 'warning',
+                        title: 'Strong Password <br> Generated',
+                        html: `
+                            <div style="margin: 20px 0;">
+                                <code style="
+                                    background: #f0f0f0;
+                                    padding: 10px 15px;
+                                    border-radius: 5px;
+                                    border: 1px solid #ddd;
+                                    font-family: monospace;
+                                    font-size: 16px;
+                                    position: relative;
+                                    display: inline-block;
+                                ">${generatedPassword}</code>
+                                <button onclick="copyPassword('${generatedPassword}')" 
+                                    style="
+                                        background: none;
+                                        border: none;
+                                        cursor: pointer;
+                                        color: #182c59;
+                                    "
+                                >
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                            </div>
+                            <p style="font-size: 14px; color: #666;">Please save this password securely</p>
+                        `,
+                        confirmButtonColor: '#182c59'
+                    });
+                }
+                return;
+            }
+
+            // Rest of the signup logic
+            if (password !== confirmPassword) {
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Oops...',
+                    text: "Passwords don't match!",
+                    confirmButtonColor: '#182c59'
+                });
+                return;
+            }
+
+            try {
+                const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+                await setDoc(doc(db, "users", userCredential.user.uid), {
+                    fullName: fullName,
+                    email: email,
+                    createdAt: new Date().toISOString()
+                });
+
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Success!',
+                    text: 'Account created successfully!',
+                    timer: 2000,
+                    showConfirmButton: false
+                }).then(() => {
+                    window.location.href = "login.html";
+                });
+            } catch (error) {
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Error',
+                    text: error.message,
+                    confirmButtonColor: '#182c59'
+                });
+            }
+        }
+
+        // Add this function to generate strong passwords
+        function generateStrongPassword() {
+            const uppercase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            const lowercase = 'abcdefghijklmnopqrstuvwxyz';
+            const numbers = '0123456789';
+            const symbols = '@$!%*?&';
+            
+            const getRandomChar = (str) => str.charAt(Math.floor(Math.random() * str.length));
+            
+            let password = 
+                getRandomChar(uppercase) +
+                getRandomChar(lowercase) +
+                getRandomChar(numbers) +
+                getRandomChar(symbols) +
+                getRandomChar(uppercase) +
+                getRandomChar(lowercase) +
+                getRandomChar(numbers) +
+                getRandomChar(symbols);
+                
+            // Shuffle the password
+            password = password.split('').sort(() => Math.random() - 0.5).join('');
+            
+            return password;
+        }
+
+        // Add copy functionality
+        window.copyPassword = async function(password) {
+            try {
+                await navigator.clipboard.writeText(password);
+                const copyIcon = document.querySelector('.fa-copy');
+                copyIcon.className = 'fas fa-check';
+                setTimeout(() => {
+                    copyIcon.className = 'fas fa-copy';
+                }, 2000);
+            } catch (err) {
+                console.error('Failed to copy password:', err);
+            }
+        }
+    </script>
+</body>
+</html>
