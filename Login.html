@@ -40,7 +40,7 @@
 				<div id="user-display" class="user-welcome" style="display: none;"></div>
 			
 				<img src="img/avatar.svg">
-				<h2 class="title">Parents portal.</h2>
+				<h2 class="title">Parents portal</h2>
            		<div class="input-div one">
            		   <div class="i">
            		   		<i class="fas fa-user"></i>
@@ -79,7 +79,7 @@
             try {
                 await signInWithEmailAndPassword(auth, email, password);
                 Swal.fire({
-                    icon: 'success',
+                    icon: 'warning',
                     title: 'Welcome back!',
                     text: 'Login successful',
                     timer: 1500,
@@ -102,7 +102,7 @@
                 }
                 
                 Swal.fire({
-                    icon: 'error',
+                    icon: 'warning',
                     title: 'Login Failed',
                     text: errorMessage,
                     confirmButtonColor: '#182c59'

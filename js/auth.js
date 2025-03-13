@@ -1,28 +1,58 @@
 import { auth } from './firebase-config.js';
 import { onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-auth.js";
+// Remove Swal import - we'll use from CDN
 
 const SESSION_TIMEOUT = 2 * 60 * 60 * 1000; // 2 hours (Google's standard)
+const INACTIVITY_TIMEOUT = 1 * 60 * 1000;  // 1 minute
+const INACTIVITY_WARNING = 30 * 1000;  // 30 seconds warning
 const ACTIVITY_KEY = 'lastUserActivity';
-const ACTIVITY_CHECK_INTERVAL = 60000; // Check every minute (more efficient)
+const ACTIVITY_CHECK_INTERVAL = 1000; // Check every second for smoother warnings
 const SESSION_DURATION_KEY = 'sessionDuration';
 const SESSION_START_KEY = 'sessionStartTime';
 const USER_SESSION_KEY = 'userSessionTime_';
 let activityInterval;
 let sessionTimer;
+let warningDialog = null;
 
 function getUserSessionKey(uid) {
     return USER_SESSION_KEY + uid;
 }
 
 function updateActivity() {
-    // Only update if the time difference is significant (> 1 minute)
     const currentTime = Date.now();
-    const lastActivity = parseInt(localStorage.getItem(ACTIVITY_KEY) || '0');
-    if (currentTime - lastActivity > 60000) {
-        localStorage.setItem(ACTIVITY_KEY, currentTime.toString());
-        localStorage.setItem('activityBroadcast', currentTime.toString());
-    }
+    // Always update activity timestamp regardless of time difference
+    localStorage.setItem(ACTIVITY_KEY, currentTime.toString());
+    localStorage.setItem('activityBroadcast', currentTime.toString());
 }
+
+async function showInactivityWarning(remainingSeconds) {
+    if (warningDialog) {
+        Swal.close();
+    }
+
+    return await Swal.fire({
+        title: 'Inactivity Warning',
+        html: `You will be logged out in <b>${remainingSeconds}</b> seconds`,
+        icon: 'warning',
+        timer: remainingSeconds * 1000,
+        timerProgressBar: true,
+        showCancelButton: true,
+        confirmButtonText: 'Stay Logged In',
+        cancelButtonText: 'Logout Now',
+        allowOutsideClick: false
+    }).then((result) => {
+        if (result.isConfirmed) {
+            updateActivity();
+            return true;
+        } else if (result.dismiss === Swal.DismissReason.cancel) {
+            handleLogout();
+            return false;
+        }
+        return false;
+    });
+}
+
+let lastWarningTime = 0;
 
 function startActivityMonitoring(uid) {
     updateActivity();
@@ -38,10 +68,15 @@ function startActivityMonitoring(uid) {
         document.addEventListener(event, updateActivity, { passive: true });
     });
 
-    // Listen for activity from other tabs
+    // Listen for activity from other tabs - improve handling
     window.addEventListener('storage', (e) => {
         if (e.key === 'activityBroadcast') {
+            // Update local activity time when other tabs are active
             localStorage.setItem(ACTIVITY_KEY, e.newValue);
+            // Reset inactivity warning if shown
+            if (Swal.isVisible()) {
+                Swal.close();
+            }
         }
         if (e.key === 'logout') {
             window.location.href = 'https://kanyadet-school-parents.web.app/login.html';
@@ -49,10 +84,23 @@ function startActivityMonitoring(uid) {
     });
 
     // Check for inactivity less frequently to improve performance
-    activityInterval = setInterval(() => {
+    activityInterval = setInterval(async () => {
         const lastActivity = parseInt(localStorage.getItem(ACTIVITY_KEY) || '0');
         const inactiveTime = Date.now() - lastActivity;
+        const currentTime = Date.now();
         
+        // Only show warning if ALL tabs are inactive
+        if (inactiveTime >= (INACTIVITY_TIMEOUT - INACTIVITY_WARNING) && 
+            !Swal.isVisible()) {
+            const remainingSeconds = 30; // Fixed 30 second warning
+            await showInactivityWarning(remainingSeconds);
+        }
+        
+        // Only logout if ALL tabs are inactive
+        if (inactiveTime >= INACTIVITY_TIMEOUT) {
+            handleLogout(uid);
+        }
+
         // Update user-specific cumulative duration
         const sessionStart = parseInt(localStorage.getItem(SESSION_START_KEY));
         const currentDuration = previousDuration + (Date.now() - sessionStart);
@@ -63,10 +111,11 @@ function startActivityMonitoring(uid) {
             alert(`Your session time is ${Math.round(currentDuration/1000/60)} minutes. It will expire in 15 minutes.`);
         }
         
-        if (currentDuration > SESSION_TIMEOUT || inactiveTime > SESSION_TIMEOUT) {
+        // Check both total session time and current tab inactivity
+        if (currentDuration > SESSION_TIMEOUT || inactiveTime > INACTIVITY_TIMEOUT) {
             handleLogout(uid);
         }
-    }, ACTIVITY_CHECK_INTERVAL);
+    }, 1000); // Check every second
 }
 
 function stopActivityMonitoring() {
