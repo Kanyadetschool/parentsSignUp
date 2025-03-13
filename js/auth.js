@@ -3,7 +3,7 @@ import { onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/
 // Remove Swal import - we'll use from CDN
 
 const SESSION_TIMEOUT = 2 * 60 * 60 * 1000; // 2 hours (Google's standard)
-const INACTIVITY_TIMEOUT = 1 * 60 * 1000;  // 1 minute
+const INACTIVITY_TIMEOUT = 4 * 60 * 1000;  // 4 minute
 const INACTIVITY_WARNING = 30 * 1000;  // 30 seconds warning
 const ACTIVITY_KEY = 'lastUserActivity';
 const ACTIVITY_CHECK_INTERVAL = 1000; // Check every second for smoother warnings
