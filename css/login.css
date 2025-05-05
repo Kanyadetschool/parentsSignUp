@@ -188,7 +188,21 @@ a:hover{
 .btn:active{
   scale: 0.8;
 }
+.Results:active{
+  scale: 0.8;
+}
+ 
+ .Results{
+	position: fixed;
+	border: none;
+	top: 70%;
+	right: 20px;
+ }
+ .Results img{
+width: 70px;
+height: 70px;
 
+ }
 
 @media screen and (max-width: 1050px){
 	.container{

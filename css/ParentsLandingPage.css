@@ -56,7 +56,7 @@ html{
     box-sizing: border-box;
 }
 body{
-    background-image:url(./images/new1.png);
+    background-image:url(../images/new1.png);
     background-size: contain;
     background-color: #ffffff7d;
     font-family: 'Poppins',sans-serif;
@@ -473,7 +473,7 @@ body{
 .backtoTop{
     position: fixed;
     right: 20px;
-    bottom: 18%;
+    bottom: 10%;
     margin: 0;
     font-size: 30px;
     width: 56px;
@@ -766,7 +766,6 @@ position: absolute;
     backdrop-filter: blur(10px);
     z-index: 1000;
     border-radius: 10px;
-    overflow-y: scroll;
 }
 nav{
     flex-direction: 1;
