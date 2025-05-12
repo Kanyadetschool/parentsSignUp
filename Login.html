@@ -65,7 +65,7 @@
                 <div id="errorMessage" class="message"></div>
             </form>
             
-                <a href="https://kanyadet-school-portal.web.app/Automations/student-results.html" target="_blank" class="Results" >
+                <a href="./Automations/student-results.html" target="_blank" class="Results" >
                 <img src="./images/Automation.png" alt="" title="View Students Results">
                 </a>
             
@@ -80,6 +80,10 @@
             
             const email = document.getElementById('email').value;
             const password = document.getElementById('password').value;
+            
+            const loginButton = document.querySelector('.btn');
+            loginButton.disabled = true;
+            loginButton.value = 'Signing in...';
             
             try {
                 await signInWithEmailAndPassword(auth, email, password);
@@ -112,6 +116,8 @@
                     text: errorMessage,
                     confirmButtonColor: '#182c59'
                 });
+                loginButton.disabled = false;
+                loginButton.value = 'Login';
             }
         }
     </script>
